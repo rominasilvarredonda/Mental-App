@@ -1,20 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Screen } from "./src/components/layout/Screen";
+import { AppText } from "./src/components/ui/AppText";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Screen centered>
+      <AppText variant="title">Mental</AppText>
+
+      <AppText style={{ marginTop: 12 }}>
+        Esta pantalla usa el componente Screen
+      </AppText>
+
+      <AppText variant="caption" style={{ marginTop: 6 }}>
+        Si ves esto centrado, ya funciona ✅
+      </AppText>
+    </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
