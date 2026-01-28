@@ -7,7 +7,7 @@ export const tokens = {
     border: "rgba(23,18,25,0.12)",
 
     primary: "#2D936C",     // verde principal
-    blue: "#536895",        // azul del diseño
+    secondary: "#536895",        // azul del diseño
   },
   radius: {
     sm: 12,
