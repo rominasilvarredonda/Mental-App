@@ -1,35 +1,30 @@
-import { Text, TextProps } from "react-native";
+// src/components/ui/AppText.tsx
+import { Text, TextProps, StyleProp, TextStyle } from "react-native";
 import clsx from "clsx";
+import { tokens } from "../../theme/tokens";
+
+type Variant = "title" | "subtitle" | "body" | "caption";
 
 type Props = TextProps & {
-  variant?: "title" | "subtitle" | "body" | "caption";
+  variant?: Variant;
   className?: string;
 };
 
-export function AppText({
-  variant = "body",
-  className,
-  ...props
-}: Props) {
-  const variantStyle = {
-    title:
-      "text-[24px] leading-[32px] font-semibold text-[#171219]",
-    subtitle:
-      "text-[18px] leading-[26px] font-semibold text-[#171219]",
-    body:
-      "text-[15px] leading-[22px] text-[#171219]",
-    caption:
-      "text-[13px] leading-[18px] text-[#171219]/60",
-  }[variant];
+const fontByVariant: Record<Variant, TextStyle> = {
+  title: { fontFamily: "OpenSans_700Bold", fontSize: 28, lineHeight: 34 },
+  subtitle: { fontFamily: "OpenSans_600SemiBold", fontSize: 18, lineHeight: 24 },
+  body: { fontFamily: "OpenSans_400Regular", fontSize: 15, lineHeight: 22 },
+  caption: { fontFamily: "OpenSans_400Regular", fontSize: 13, lineHeight: 18 },
+};
+
+export function AppText({ variant = "body", className, style, ...props }: Props) {
+  const base: TextStyle = { color: tokens.colors.text };
 
   return (
     <Text
       {...props}
-      className={clsx(
-        "font-['OpenSans_400Regular']",
-        variantStyle,
-        className
-      )}
+      className={clsx(className)}
+      style={[base, fontByVariant[variant], style as StyleProp<TextStyle>]}
     />
   );
 }
