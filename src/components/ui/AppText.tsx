@@ -6,13 +6,30 @@ type Props = TextProps & {
   className?: string;
 };
 
-export function AppText({ variant = "body", className, ...props }: Props) {
+export function AppText({
+  variant = "body",
+  className,
+  ...props
+}: Props) {
   const variantStyle = {
-    title: "text-[24px] font-semibold",
-    subtitle: "text-[16px] font-semibold",
-    body: "text-[15px]",
-    caption: "text-[13px] text-black/60",
+    title:
+      "text-[24px] leading-[32px] font-semibold text-[#171219]",
+    subtitle:
+      "text-[18px] leading-[26px] font-semibold text-[#171219]",
+    body:
+      "text-[15px] leading-[22px] text-[#171219]",
+    caption:
+      "text-[13px] leading-[18px] text-[#171219]/60",
   }[variant];
 
-  return <Text {...props} className={clsx("text-black", variantStyle, className)} />;
+  return (
+    <Text
+      {...props}
+      className={clsx(
+        "font-['OpenSans_400Regular']",
+        variantStyle,
+        className
+      )}
+    />
+  );
 }

@@ -1,18 +1,26 @@
-import { Screen } from "./src/components/layout/Screen";
-import { AppText } from "./src/components/ui/AppText";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import { useFonts } from "expo-font";
+import {
+  OpenSans_400Regular,
+  OpenSans_600SemiBold,
+  OpenSans_700Bold,
+} from "@expo-google-fonts/open-sans";
+
+import { OnboardingScreen } from "./src/screens/onboarding/OnboardingScreen";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    OpenSans_400Regular,
+    OpenSans_600SemiBold,
+    OpenSans_700Bold,
+  });
+
+  if (!fontsLoaded) return null;
+
   return (
-    <Screen centered>
-      <AppText variant="title">Mental</AppText>
-
-      <AppText style={{ marginTop: 12 }}>
-        Esta pantalla usa el componente Screen
-      </AppText>
-
-      <AppText variant="caption" style={{ marginTop: 6 }}>
-        Si ves esto centrado, ya funciona ✅
-      </AppText>
-    </Screen>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#FCFEFF" }}>
+      <OnboardingScreen />
+    </SafeAreaView>
   );
 }
