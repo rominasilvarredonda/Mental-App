@@ -32,16 +32,25 @@ export function OnboardingSlide({ data, index, total, onPrimary, onSecondary }: 
   return (
     <View style={{ flex: 1, backgroundColor: tokens.colors.bg, paddingHorizontal: 24, paddingTop: 24 }}>
       {/* Imagen */}
-      <View style={{ alignItems: "center", marginTop: 30 }}>
-        <Image
-          source={data.image}
-          style={{ width: "100%", height: 260 }}
-          resizeMode="contain"
-        />
-      </View>
+      <View
+  style={{
+    alignItems: "center",
+    marginTop: 40,      // 👈 baja la imagen
+  }}
+>
+  <Image
+    source={data.image}
+    style={{
+      width: "100%",     // 👈 más grande
+      height: 425,      // 👈 ajustá: 260 / 280 / 300
+      resizeMode: "contain",
+    }}
+  />
+</View>
+
 
       {/* Texto */}
-      <View style={{ marginTop: 18, alignItems: "center" }}>
+      <View style={{ marginTop: -60, alignItems: "center" }}>
         <AppText variant="title" style={{ textAlign: "center", color: "#536895" }}>
           {data.title.left}
           <AppText
