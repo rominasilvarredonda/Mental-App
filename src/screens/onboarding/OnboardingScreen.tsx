@@ -1,23 +1,29 @@
 // src/screens/onboarding/OnboardingScreen.tsx
 import { useState } from "react";
 import { View } from "react-native";
-import { onboardingSlides } from "./onboarding.data";
+
+import { onboardingSlides } from "../../components/onboarding/onboarding.data";
 import { OnboardingSlide } from "../../components/onboarding/OnboardingSlide";
 
 export function OnboardingScreen() {
   const [index, setIndex] = useState(0);
+
   const total = onboardingSlides.length;
   const data = onboardingSlides[index];
 
+  if (!data) return null;
+
   const goNext = () => {
-    if (index < total - 1) setIndex(index + 1);
-    else {
-      // acá después navegamos a Register/Login
-      // por ahora: no hacemos nada
+    if (index < total - 1) {
+      setIndex(index + 1);
+    } else {
+      // TODO: navegar a Login / Register
     }
   };
 
-  const skip = () => setIndex(total - 1);
+  const skip = () => {
+    setIndex(total - 1);
+  };
 
   return (
     <View style={{ flex: 1 }}>
