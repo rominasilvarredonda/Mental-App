@@ -19,6 +19,7 @@ import type { HomeFlowsStackParamList } from "../../navigation/HomeFlowsStack";
 import { SessionActionSheet } from "../../components/session/SessionActionSheet";
 import { useFocusEffect, useRoute } from "@react-navigation/native";
 import { useCallback } from "react";
+import { ComingSoonModal } from "../../components/common/ComingSoonModal";
 
 type Mood = {
   id: string;
@@ -50,28 +51,27 @@ export function HomeScreen() {
     startTime: string;
     zoomCode: string;
   };
-  
+
   const [nextSession, setNextSession] = useState<NextSession | null>(null);
-  
+  const [aiModalOpen, setAiModalOpen] = useState(false);
+
   const route = useRoute<any>();
-  
 
-useFocusEffect(
-  useCallback(() => {
-    if (route.params?.cancelled) {
-      setNextSession(null);
-      // limpiar flag
-      route.params.cancelled = false;
-    }
+  useFocusEffect(
+    useCallback(() => {
+      if (route.params?.cancelled) {
+        setNextSession(null);
+        // limpiar flag
+        route.params.cancelled = false;
+      }
 
-    if (route.params?.scheduled && route.params?.scheduledData) {
-      setNextSession(route.params.scheduledData);
-      route.params.scheduled = false;
-      route.params.scheduledData = undefined;
-    }
-  }, [route.params])
-);
-
+      if (route.params?.scheduled && route.params?.scheduledData) {
+        setNextSession(route.params.scheduledData);
+        route.params.scheduled = false;
+        route.params.scheduledData = undefined;
+      }
+    }, [route.params])
+  );
 
   return (
     <SafeAreaView
@@ -470,10 +470,13 @@ useFocusEffect(
             <TouchableOpacity
               key={item.label}
               onPress={() => {
-                if (item.label === "Nueva sesión") navigation.navigate("NewSession");
-                else console.log(item.label);
+                if (item.label === "Nueva sesión")
+                  navigation.navigate("NewSession");
+                if (item.label === "AI de apoyo") {
+                  setAiModalOpen(true);
+                } else console.log(item.label);
               }}
-                            style={{
+              style={{
                 flex: 1,
                 backgroundColor: "#fff",
                 borderRadius: 16,
@@ -952,6 +955,10 @@ useFocusEffect(
             psychologist: "Ps. Silvia Cardozo",
           });
         }}
+      />
+      <ComingSoonModal
+        visible={aiModalOpen}
+        onClose={() => setAiModalOpen(false)}
       />
     </SafeAreaView>
   );
