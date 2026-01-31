@@ -16,6 +16,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import type { HomeFlowsStackParamList } from "../../navigation/HomeFlowsStack";
+import { SessionActionSheet } from "../../components/session/SessionActionSheet";
+import { useFocusEffect, useRoute } from "@react-navigation/native";
+import { useCallback } from "react";
 
 type Mood = {
   id: string;
@@ -36,9 +39,35 @@ export function HomeScreen() {
   const [note, setNote] = useState("");
   const [moodSaved, setMoodSaved] = useState(false);
   const progress = 0.75; // 75%
-  const navigation = useNavigation<NativeStackNavigationProp<HomeFlowsStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<HomeFlowsStackParamList>>();
 
   const canSave = useMemo(() => Boolean(selectedMood), [selectedMood]);
+  const [sessionMenuOpen, setSessionMenuOpen] = useState(false);
+  const [nextSession, setNextSession] = useState<{
+    psychologist: string;
+    dateLabel: string;
+    startTime: string;
+    zoomCode: string;
+  } | null>({
+    psychologist: "Ps. Silvia Cardozo",
+    dateLabel: "Lunes 2 de Febrero",
+    startTime: "14:00",
+    zoomCode: "123 456 7890",
+  });
+  const route = useRoute<any>();
+
+useFocusEffect(
+  useCallback(() => {
+    if (route.params?.cancelled) {
+      setNextSession(null);
+
+      // opcional pero MUY recomendado: limpiar el flag para que no se dispare siempre
+      route.params.cancelled = false;
+    }
+  }, [route.params])
+);
+
 
   return (
     <SafeAreaView
@@ -196,7 +225,7 @@ export function HomeScreen() {
             </>
           ) : (
             <>
-              {/* Card "Completado" como tu imagen */}
+              {/* Card de registro emocional */}
               <View
                 style={{
                   flexDirection: "row",
@@ -296,46 +325,47 @@ export function HomeScreen() {
         </View>
 
         {/* Próxima sesión */}
-        <LinearGradient
-          colors={[tokens.colors.primary, tokens.colors.secondary]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={{
-            marginTop: 16,
-            borderRadius: 18,
-            padding: 16,
-          }}
-        >
-          <AppText style={{ color: "rgba(255,255,255,0.8)", fontSize: 12 }}>
-            Próxima sesión
-          </AppText>
-
-          <View
+        {nextSession && (
+          <LinearGradient
+            colors={[tokens.colors.primary, tokens.colors.secondary]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
             style={{
-              marginTop: 8,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: 12,
+              marginTop: 16,
+              borderRadius: 18,
+              padding: 16,
             }}
           >
-            <View style={{ flex: 1 }}>
-              <AppText
-                style={{
-                  color: "#fff",
-                  fontSize: 18,
-                  fontFamily: "OpenSans_700Bold",
-                }}
-              >
-                Ps. Silvia Cardozo
-              </AppText>
-              <AppText
-                style={{ color: "rgba(255,255,255,0.85)", marginTop: 2 }}
-              >
-                Psicóloga TCC
-              </AppText>
+            <AppText style={{ color: "rgba(255,255,255,0.8)", fontSize: 12 }}>
+              Próxima sesión
+            </AppText>
 
-              <View style={{ flexDirection: "row", gap: 12, marginTop: 10 }}>
+            <View
+              style={{
+                marginTop: 8,
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                gap: 12,
+              }}
+            >
+              <View style={{ flex: 1 }}>
+                <AppText
+                  style={{
+                    color: "#fff",
+                    fontSize: 18,
+                    fontFamily: "OpenSans_700Bold",
+                  }}
+                >
+                  {nextSession.psychologist}
+                </AppText>
+
+                <AppText
+                  style={{ color: "rgba(255,255,255,0.85)", marginTop: 2 }}
+                >
+                  Psicóloga TCC
+                </AppText>
+
                 <View style={{ flexDirection: "row", gap: 12, marginTop: 10 }}>
                   <View
                     style={{
@@ -350,7 +380,7 @@ export function HomeScreen() {
                       color="rgba(255,255,255,0.9)"
                     />
                     <AppText style={{ color: "rgba(255,255,255,0.9)" }}>
-                      Mañana, 2:00 PM
+                      {nextSession.dateLabel}, {nextSession.startTime}
                     </AppText>
                   </View>
 
@@ -372,60 +402,59 @@ export function HomeScreen() {
                   </View>
                 </View>
               </View>
+
+              <View
+                style={{
+                  width: 42,
+                  height: 42,
+                  borderRadius: 21,
+                  backgroundColor: "rgba(255,255,255,0.25)",
+                }}
+              />
             </View>
 
-            <View
-              style={{
-                width: 42,
-                height: 42,
-                borderRadius: 21,
-                backgroundColor: "rgba(255,255,255,0.25)",
-              }}
-            />
-          </View>
-
-          <View style={{ marginTop: 14, flexDirection: "row", gap: 10 }}>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("SessionDetails", {
-                  psychologist: "Ps. Silvia Cardozo",
-                  dateLabel: "Lunes 2 de Febrero",
-                  startTime: "14:00",
-                  zoomCode: "123 456 7890",
-                })
-              }
-              
-              style={{
-                flex: 1,
-                height: 44,
-                borderRadius: 12,
-                backgroundColor: "#fff",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <AppText
-                style={{ color: tokens.colors.primary, fontWeight: "800" }}
+            <View style={{ marginTop: 14, flexDirection: "row", gap: 10 }}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("SessionDetails", {
+                    psychologist: nextSession.psychologist,
+                    dateLabel: nextSession.dateLabel,
+                    startTime: nextSession.startTime,
+                    zoomCode: nextSession.zoomCode,
+                  })
+                }
+                style={{
+                  flex: 1,
+                  height: 44,
+                  borderRadius: 12,
+                  backgroundColor: "#fff",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
               >
-                Comenzar sesión
-              </AppText>
-            </TouchableOpacity>
+                <AppText
+                  style={{ color: tokens.colors.primary, fontWeight: "800" }}
+                >
+                  Comenzar sesión
+                </AppText>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => console.log("más opciones")}
-              style={{
-                width: 44,
-                height: 44,
-                borderRadius: 12,
-                backgroundColor: "rgba(255,255,255,0.20)",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Feather name="more-horizontal" size={18} color="#fff" />
-            </TouchableOpacity>
-          </View>
-        </LinearGradient>
+              <TouchableOpacity
+                onPress={() => setSessionMenuOpen(true)}
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: 12,
+                  backgroundColor: "rgba(255,255,255,0.20)",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Feather name="more-horizontal" size={18} color="#fff" />
+              </TouchableOpacity>
+            </View>
+          </LinearGradient>
+        )}
 
         {/* Accesos rápidos */}
         <View style={{ marginTop: 16, flexDirection: "row", gap: 12 }}>
@@ -901,6 +930,22 @@ export function HomeScreen() {
           </TouchableOpacity>
         </View>
       </ScrollView>
+      <SessionActionSheet
+        visible={sessionMenuOpen}
+        onClose={() => setSessionMenuOpen(false)}
+        onCancelSession={() => {
+          navigation.navigate("CancelSession", {
+            psychologist: "Ps. Silvia Cardozo",
+            dateLabel: "Lunes 2 de Febrero",
+            startTime: "14:00",
+          });
+        }}
+        onChangeDate={() => {
+          navigation.navigate("RescheduleSession", {
+            psychologist: "Ps. Silvia Cardozo",
+          });
+        }}
+      />
     </SafeAreaView>
   );
 }
