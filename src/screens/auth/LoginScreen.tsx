@@ -100,7 +100,7 @@ export function LoginScreen() {
             label="Iniciar sesión"
             onPress={() => {
               // 🔑 cambio único
-              navigation.replace("Home");
+              navigation.replace("App");
             }}
           />
         </View>
