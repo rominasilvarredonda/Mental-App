@@ -4,6 +4,8 @@ import { SessionDetailsScreen } from "../screens/home/SessionDetailsScreen";
 import { CancelSessionScreen } from "../screens/home/CancelSessionScreen";
 import { RescheduleSessionScreen } from "../screens/home/RescheduleSessionScreen";
 import { NewSessionScreen } from "../screens/home/NewSessionScreen";
+import { SeminarsScreen } from "../screens/home/SeminarsScreen";
+
 
 export type HomeFlowsStackParamList = {
     Home:
@@ -38,8 +40,9 @@ export type HomeFlowsStackParamList = {
     };
   
     NewSession: undefined;
-  };
-  
+    Seminars: undefined;
+
+  };  
 
 const Stack = createNativeStackNavigator<HomeFlowsStackParamList>();
 
@@ -51,6 +54,8 @@ export function HomeFlowsStack() {
       <Stack.Screen name="CancelSession" component={CancelSessionScreen} />
       <Stack.Screen name="RescheduleSession" component={RescheduleSessionScreen}/>
       <Stack.Screen name="NewSession" component={NewSessionScreen} />
+      <Stack.Screen name="Seminars" component={SeminarsScreen} />
+
     </Stack.Navigator>
   );
 }

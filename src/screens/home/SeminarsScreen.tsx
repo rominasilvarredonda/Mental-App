@@ -1,0 +1,193 @@
+import { ScrollView, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Feather } from "@expo/vector-icons";
+import { tokens } from "../../theme/tokens";
+import { AppText } from "../../components/ui/AppText";
+import { AppButton } from "../../components/ui/AppButton";
+
+export function SeminarsScreen() {
+  const userIsRegisteredForNext = false;
+  const userAttendedLast = true;
+
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: tokens.colors.bg }} edges={["top"]}>
+      <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 32 }}>
+        {/* ===== Seminario anterior ===== */}
+        <View
+          style={{
+            backgroundColor: "rgba(0,0,0,0.04)",
+            borderRadius: 18,
+            padding: 16,
+            borderWidth: 1,
+            borderColor: "rgba(0,0,0,0.06)",
+            marginBottom: 20,
+          }}
+        >
+          <AppText
+            style={{
+              fontSize: 12,
+              fontWeight: "800",
+              letterSpacing: 1,
+              color: tokens.colors.mutedText,
+            }}
+          >
+            SEMINARIO ANTERIOR · COMPLETADO
+          </AppText>
+
+          <AppText
+            style={{
+              marginTop: 12,
+              fontSize: 18,
+              fontWeight: "900",
+              color: tokens.colors.text,
+            }}
+          >
+            Cómo manejar la ansiedad cotidiana
+          </AppText>
+
+          <AppText style={{ marginTop: 6, color: tokens.colors.mutedText }}>
+            Ps. Laura Méndez · 10 de Enero · 18:00 hs
+          </AppText>
+
+          <AppText
+            style={{
+              marginTop: 10,
+              color: tokens.colors.mutedText,
+              lineHeight: 20,
+            }}
+          >
+            Técnicas prácticas para identificar, entender y regular la ansiedad
+            en el día a día.
+          </AppText>
+
+          {userAttendedLast && (
+            <View style={{ marginTop: 14, flexDirection: "row", gap: 10 }}>
+              <TouchableOpacity
+                onPress={() => console.log("ver grabación")}
+                style={{
+                  height: 40,
+                  paddingHorizontal: 14,
+                  borderRadius: 12,
+                  backgroundColor: "#fff",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderWidth: 1,
+                  borderColor: "rgba(0,0,0,0.08)",
+                }}
+              >
+                <AppText style={{ fontWeight: "800" }}>Ver grabación</AppText>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => console.log("ver material")}
+                style={{
+                  height: 40,
+                  paddingHorizontal: 14,
+                  borderRadius: 12,
+                  backgroundColor: "#fff",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderWidth: 1,
+                  borderColor: "rgba(0,0,0,0.08)",
+                }}
+              >
+                <AppText style={{ fontWeight: "800" }}>Material</AppText>
+              </TouchableOpacity>
+            </View>
+          )}
+        </View>
+
+        {/* ===== Próximo seminario ===== */}
+        <View
+          style={{
+            backgroundColor: "#fff",
+            borderRadius: 20,
+            padding: 18,
+            borderWidth: 1,
+            borderColor: "rgba(0,0,0,0.06)",
+            shadowColor: "#000",
+            shadowOpacity: 0.08,
+            shadowRadius: 12,
+            shadowOffset: { width: 0, height: 6 },
+          }}
+        >
+          <AppText
+            style={{
+              fontSize: 12,
+              fontWeight: "800",
+              letterSpacing: 1,
+              color: tokens.colors.primary,
+            }}
+          >
+            PRÓXIMO SEMINARIO
+          </AppText>
+
+          <AppText
+            style={{
+              marginTop: 12,
+              fontSize: 22,
+              fontWeight: "900",
+              color: tokens.colors.text,
+            }}
+          >
+            Psicoeducación emocional
+          </AppText>
+
+          <AppText style={{ marginTop: 6, color: tokens.colors.mutedText }}>
+            Ps. Silvia Cardozo · 22 de Febrero · 18:00 hs
+          </AppText>
+
+          <AppText
+            style={{
+              marginTop: 12,
+              color: tokens.colors.text,
+              lineHeight: 22,
+            }}
+          >
+            Un espacio para comprender cómo funcionan nuestras emociones,
+            aprender a interpretarlas y desarrollar recursos para manejarlas
+            mejor en la vida cotidiana.
+          </AppText>
+
+          <View
+            style={{
+              marginTop: 14,
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            <Feather
+              name={userIsRegisteredForNext ? "check-circle" : "info"}
+              size={16}
+              color={
+                userIsRegisteredForNext
+                  ? tokens.colors.primary
+                  : tokens.colors.mutedText
+              }
+            />
+            <AppText style={{ fontWeight: "700" }}>
+              {userIsRegisteredForNext
+                ? "Ya estás inscripto"
+                : "Todavía no estás inscripto"}
+            </AppText>
+          </View>
+
+          <View style={{ marginTop: 18 }}>
+            {userIsRegisteredForNext ? (
+              <AppButton
+                label="Acceder al material"
+                onPress={() => console.log("material próximo")}
+              />
+            ) : (
+              <AppButton
+                label="Inscribirme al seminario"
+                onPress={() => console.log("inscribirme")}
+              />
+            )}
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}

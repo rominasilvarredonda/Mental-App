@@ -474,7 +474,10 @@ export function HomeScreen() {
                   navigation.navigate("NewSession");
                 if (item.label === "AI de apoyo") {
                   setAiModalOpen(true);
-                } else console.log(item.label);
+                } 
+                if (item.label === "Seminarios") {
+                    navigation.navigate("Seminars");
+                  } else console.log(item.label);
               }}
               style={{
                 flex: 1,
