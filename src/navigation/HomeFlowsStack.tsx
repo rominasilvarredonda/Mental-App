@@ -3,27 +3,43 @@ import { HomeScreen } from "../screens/home/HomeScreen";
 import { SessionDetailsScreen } from "../screens/home/SessionDetailsScreen";
 import { CancelSessionScreen } from "../screens/home/CancelSessionScreen";
 import { RescheduleSessionScreen } from "../screens/home/RescheduleSessionScreen";
+import { NewSessionScreen } from "../screens/home/NewSessionScreen";
 
 export type HomeFlowsStackParamList = {
-    Home: { cancelled?: boolean } | undefined;
-
-  SessionDetails: {
-    psychologist: string;
-    dateLabel: string;
-    startTime: string;
-    zoomCode: string;
+    Home:
+      | {
+          cancelled?: boolean;
+  
+          scheduled?: boolean;
+          scheduledData?: {
+            psychologist: string;
+            dateLabel: string;
+            startTime: string;
+            zoomCode: string;
+          };
+        }
+      | undefined;
+  
+    SessionDetails: {
+      psychologist: string;
+      dateLabel: string;
+      startTime: string;
+      zoomCode: string;
+    };
+  
+    CancelSession: {
+      psychologist: string;
+      dateLabel: string;
+      startTime: string;
+    };
+  
+    RescheduleSession: {
+      psychologist: string;
+    };
+  
+    NewSession: undefined;
   };
-
-  CancelSession: {
-    psychologist: string;
-    dateLabel: string;
-    startTime: string;
-  };
-
-  RescheduleSession: {
-    psychologist: string;
-  };
-};
+  
 
 const Stack = createNativeStackNavigator<HomeFlowsStackParamList>();
 
@@ -34,6 +50,7 @@ export function HomeFlowsStack() {
       <Stack.Screen name="SessionDetails" component={SessionDetailsScreen} />
       <Stack.Screen name="CancelSession" component={CancelSessionScreen} />
       <Stack.Screen name="RescheduleSession" component={RescheduleSessionScreen}/>
+      <Stack.Screen name="NewSession" component={NewSessionScreen} />
     </Stack.Navigator>
   );
 }

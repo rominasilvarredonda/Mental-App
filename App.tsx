@@ -13,9 +13,7 @@ import { OnboardingScreen } from "./src/screens/onboarding/OnboardingScreen";
 import { WelcomeAuthScreen } from "./src/screens/auth/WelcomeAuthScreen";
 import { RegisterScreen } from "./src/screens/auth/RegisterScreen";
 import { LoginScreen } from "./src/screens/auth/LoginScreen";
-import { HomeScreen } from "./src/screens/home/HomeScreen";
 import { AppTabs } from "./src/navigation/AppTabs";
-
 
 export type RootStackParamList = {
   Onboarding: undefined;

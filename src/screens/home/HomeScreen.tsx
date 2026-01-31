@@ -44,26 +44,30 @@ export function HomeScreen() {
 
   const canSave = useMemo(() => Boolean(selectedMood), [selectedMood]);
   const [sessionMenuOpen, setSessionMenuOpen] = useState(false);
-  const [nextSession, setNextSession] = useState<{
+  type NextSession = {
     psychologist: string;
     dateLabel: string;
     startTime: string;
     zoomCode: string;
-  } | null>({
-    psychologist: "Ps. Silvia Cardozo",
-    dateLabel: "Lunes 2 de Febrero",
-    startTime: "14:00",
-    zoomCode: "123 456 7890",
-  });
+  };
+  
+  const [nextSession, setNextSession] = useState<NextSession | null>(null);
+  
   const route = useRoute<any>();
+  
 
 useFocusEffect(
   useCallback(() => {
     if (route.params?.cancelled) {
       setNextSession(null);
-
-      // opcional pero MUY recomendado: limpiar el flag para que no se dispare siempre
+      // limpiar flag
       route.params.cancelled = false;
+    }
+
+    if (route.params?.scheduled && route.params?.scheduledData) {
+      setNextSession(route.params.scheduledData);
+      route.params.scheduled = false;
+      route.params.scheduledData = undefined;
     }
   }, [route.params])
 );
@@ -465,8 +469,11 @@ useFocusEffect(
           ].map((item) => (
             <TouchableOpacity
               key={item.label}
-              onPress={() => console.log(item.label)}
-              style={{
+              onPress={() => {
+                if (item.label === "Nueva sesión") navigation.navigate("NewSession");
+                else console.log(item.label);
+              }}
+                            style={{
                 flex: 1,
                 backgroundColor: "#fff",
                 borderRadius: 16,
