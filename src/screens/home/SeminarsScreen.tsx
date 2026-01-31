@@ -4,13 +4,30 @@ import { Feather } from "@expo/vector-icons";
 import { tokens } from "../../theme/tokens";
 import { AppText } from "../../components/ui/AppText";
 import { AppButton } from "../../components/ui/AppButton";
+import { useState } from "react";
+import { ComingSoonModal } from "../../components/common/ComingSoonModal";
+import { ConfirmModal } from "../../components/common/ConfirmModal";
 
 export function SeminarsScreen() {
-  const userIsRegisteredForNext = false;
   const userAttendedLast = true;
+  const [comingSoonOpen, setComingSoonOpen] = useState(false);
+  const [registerConfirmOpen, setRegisterConfirmOpen] = useState(false);
+  const [userIsRegisteredForNext, setUserIsRegisteredForNext] = useState(false);
+  const nextSeminar = {
+    topic: "Psicoeducación emocional",
+    date: "22 de Febrero",
+    time: "18:00 hs",
+    professional: "Ps. Silvia Cardozo",
+  };
+  const [comingSoonType, setComingSoonType] = useState<
+    "material" | "recording" | "nextMaterial"
+  >("material");
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: tokens.colors.bg }} edges={["top"]}>
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: tokens.colors.bg }}
+      edges={["top"]}
+    >
       <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 32 }}>
         {/* ===== Seminario anterior ===== */}
         <View
@@ -63,7 +80,7 @@ export function SeminarsScreen() {
           {userAttendedLast && (
             <View style={{ marginTop: 14, flexDirection: "row", gap: 10 }}>
               <TouchableOpacity
-                onPress={() => console.log("ver grabación")}
+                onPress={() => setComingSoonOpen(true)}
                 style={{
                   height: 40,
                   paddingHorizontal: 14,
@@ -79,7 +96,7 @@ export function SeminarsScreen() {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={() => console.log("ver material")}
+                onPress={() => setComingSoonOpen(true)}
                 style={{
                   height: 40,
                   paddingHorizontal: 14,
@@ -177,17 +194,38 @@ export function SeminarsScreen() {
             {userIsRegisteredForNext ? (
               <AppButton
                 label="Acceder al material"
-                onPress={() => console.log("material próximo")}
+                onPress={() => {
+                  setComingSoonType("material");
+                  setComingSoonOpen(true);
+                }}
               />
             ) : (
               <AppButton
                 label="Inscribirme al seminario"
-                onPress={() => console.log("inscribirme")}
+                onPress={() => setRegisterConfirmOpen(true)}
               />
             )}
           </View>
         </View>
       </ScrollView>
+      <ComingSoonModal
+        visible={comingSoonOpen}
+        onClose={() => setComingSoonOpen(false)}
+      />
+      <ConfirmModal
+        visible={registerConfirmOpen}
+        title="Confirmar inscripción"
+        message={`¿Estás seguro que deseás inscribirte al seminario "${nextSeminar.topic}" el ${nextSeminar.date} a las ${nextSeminar.time} con ${nextSeminar.professional}?`}
+        confirmLabel="Confirmar"
+        cancelLabel="Cancelar"
+        iconName="user-check"
+        onCancel={() => setRegisterConfirmOpen(false)}
+        onConfirm={() => {
+          setRegisterConfirmOpen(false);
+          setUserIsRegisteredForNext(true);
+          console.log("Usuario inscripto al seminario");
+        }}
+      />
     </SafeAreaView>
   );
 }

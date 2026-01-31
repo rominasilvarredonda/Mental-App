@@ -6,11 +6,20 @@ import { AppText } from "../ui/AppText";
 type Props = {
   visible: boolean;
   onClose: () => void;
+  title?: string;
+  description?: string;
+  iconName?: keyof typeof Feather.glyphMap;
 };
 
-export function ComingSoonModal({ visible, onClose }: Props) {
+export function ComingSoonModal({
+  visible,
+  onClose,
+  title = "Próximamente",
+  description = "Esta función todavía no está disponible, pero lo estará muy pronto.",
+  iconName = "info",
+}: Props) {
   return (
-    <Modal visible={visible} transparent animationType="fade">
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <View
         style={{
           flex: 1,
@@ -40,11 +49,11 @@ export function ComingSoonModal({ visible, onClose }: Props) {
               marginBottom: 14,
             }}
           >
-            <Feather name="cpu" size={22} color={tokens.colors.primary} />
+            <Feather name={iconName} size={22} color={tokens.colors.primary} />
           </View>
 
           <AppText style={{ fontSize: 18, fontWeight: "900", textAlign: "center" }}>
-            Función en desarrollo
+            {title}
           </AppText>
 
           <AppText
@@ -55,8 +64,7 @@ export function ComingSoonModal({ visible, onClose }: Props) {
               lineHeight: 20,
             }}
           >
-            La IA de apoyo todavía no está disponible, pero muy pronto vas a poder
-            usarla como acompañamiento entre sesiones.
+            {description}
           </AppText>
 
           <TouchableOpacity
