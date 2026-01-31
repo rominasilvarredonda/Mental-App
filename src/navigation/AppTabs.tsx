@@ -3,12 +3,19 @@ import { tokens } from "../theme/tokens";
 import { View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { HomeFlowsStack } from "./HomeFlowsStack";
+import { FunctionsStack } from "./FunctionsStack";
+
 
 function Placeholder() {
   return <View style={{ flex: 1, backgroundColor: tokens.colors.bg }} />;
 }
-
-const Tab = createBottomTabNavigator();
+export type AppTabsParamList = {
+    Inicio: undefined;
+    Funciones: { screen?: "SuggestedExercises" } | undefined;
+    Perfil: undefined;
+  };
+  
+  const Tab = createBottomTabNavigator<AppTabsParamList>();
 
 export function AppTabs() {
   return (
@@ -37,8 +44,9 @@ export function AppTabs() {
       })}
     >
       <Tab.Screen name="Inicio" component={HomeFlowsStack} />
-      <Tab.Screen name="Funciones" component={Placeholder} />
+      <Tab.Screen name="Funciones" component={FunctionsStack} />
       <Tab.Screen name="Perfil" component={Placeholder} />
+      
     </Tab.Navigator>
   );
 }

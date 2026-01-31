@@ -20,6 +20,9 @@ import { SessionActionSheet } from "../../components/session/SessionActionSheet"
 import { useFocusEffect, useRoute } from "@react-navigation/native";
 import { useCallback } from "react";
 import { ComingSoonModal } from "../../components/common/ComingSoonModal";
+import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import type { AppTabsParamList } from "../../navigation/AppTabs";
+
 
 type Mood = {
   id: string;
@@ -54,6 +57,8 @@ export function HomeScreen() {
 
   const [nextSession, setNextSession] = useState<NextSession | null>(null);
   const [aiModalOpen, setAiModalOpen] = useState(false);
+  const tabNavigation = useNavigation<BottomTabNavigationProp<AppTabsParamList>>();
+
 
   const route = useRoute<any>();
 
@@ -528,7 +533,10 @@ export function HomeScreen() {
             <AppText style={{ fontSize: 16, fontFamily: "OpenSans_700Bold" }}>
               Ejercicios sugeridos
             </AppText>
-            <TouchableOpacity onPress={() => console.log("ver todas")}>
+            <TouchableOpacity
+  onPress={() => tabNavigation.navigate("Funciones", { screen: "SuggestedExercises" })}
+
+>
               <AppText style={{ color: tokens.colors.primary }}>
                 Ver todas
               </AppText>
