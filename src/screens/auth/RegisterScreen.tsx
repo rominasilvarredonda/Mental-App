@@ -6,9 +6,12 @@ import { tokens } from "../../theme/tokens";
 import { AppText } from "../../components/ui/AppText";
 import { AppButton } from "../../components/ui/AppButton";
 import { AuthInput } from "../../components/ui/AuthInput";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import type { RootStackParamList } from "../../../App"; 
 
 export function RegisterScreen() {
-  const navigation = useNavigation<any>();
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -109,8 +112,10 @@ export function RegisterScreen() {
         <View style={{ marginTop: 22 }}>
           <AppButton
             label="Crear cuenta"
-            onPress={() => console.log("register:", { name, email })}
-          />
+            onPress={() => {
+                navigation.replace("App");
+              }}
+                        />
         </View>
 
         <View
