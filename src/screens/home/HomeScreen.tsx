@@ -10,6 +10,7 @@ import { tokens } from "../../theme/tokens";
 import { AppText } from "../../components/ui/AppText";
 import { AppButton } from "../../components/ui/AppButton";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
 
 type Mood = { id: string; label: string; emoji: string };
 
@@ -168,14 +169,17 @@ export function HomeScreen() {
         </View>
 
         {/* Próxima sesión */}
-        <View
-          style={{
-            marginTop: 16,
-            borderRadius: 18,
-            padding: 16,
-            backgroundColor: "#2D936C",
-          }}
-        >
+        <LinearGradient
+  colors={[tokens.colors.primary, tokens.colors.secondary]}
+  start={{ x: 0, y: 0 }}
+  end={{ x: 1, y: 1 }}
+  style={{
+    marginTop: 16,
+    borderRadius: 18,
+    padding: 16,
+  }}
+>
+
           <AppText style={{ color: "rgba(255,255,255,0.8)", fontSize: 12 }}>
             Próxima sesión
           </AppText>
@@ -190,7 +194,7 @@ export function HomeScreen() {
             }}
           >
             <View style={{ flex: 1 }}>
-              <AppText style={{ color: "#fff", fontSize: 16, fontWeight: "800" }}>
+              <AppText style={{ color: "#fff", fontSize: 18, fontFamily: "OpenSans_700Bold"}}>
                 Ps. Silvia Cardozo
               </AppText>
               <AppText style={{ color: "rgba(255,255,255,0.85)", marginTop: 2 }}>
@@ -199,10 +203,10 @@ export function HomeScreen() {
 
               <View style={{ flexDirection: "row", gap: 12, marginTop: 10 }}>
                 <AppText style={{ color: "rgba(255,255,255,0.9)" }}>
-                  📅 Mañana, 2:00 PM
+                  📅  Mañana, 2:00 PM
                 </AppText>
                 <AppText style={{ color: "rgba(255,255,255,0.9)" }}>
-                  🎥 Zoom
+                  🎥  Zoom
                 </AppText>
               </View>
             </View>
@@ -248,7 +252,7 @@ export function HomeScreen() {
               <AppText style={{ color: "#fff", fontSize: 18 }}>⋯</AppText>
             </TouchableOpacity>
           </View>
-        </View>
+        </LinearGradient>
 
         {/* Accesos rápidos */}
         <View style={{ marginTop: 16, flexDirection: "row", gap: 12 }}>
@@ -302,7 +306,7 @@ export function HomeScreen() {
               marginBottom: 10,
             }}
           >
-            <AppText style={{ fontSize: 16, fontWeight: "800" }}>
+            <AppText style={{ fontSize: 16, fontFamily: "OpenSans_700Bold" }}>
               Ejercicios sugeridos
             </AppText>
             <TouchableOpacity onPress={() => console.log("ver todas")}>
@@ -368,116 +372,283 @@ export function HomeScreen() {
         </View>
 
         {/* Lectura del día */}
-        <View style={{ marginTop: 8 }}>
-          <AppText style={{ fontSize: 16, fontWeight: "800", marginBottom: 10 }}>
-            Lectura del día
-          </AppText>
+<View style={{ marginTop: 8 }}>
+  <AppText style={{ fontSize: 16, fontFamily: "OpenSans_700Bold", marginBottom: 10 }}>
+    Lectura del día
+  </AppText>
 
-          <View
-            style={{
-              borderRadius: 18,
-              padding: 16,
-              backgroundColor: "#2D936C",
-            }}
-          >
-            <AppText style={{ color: "rgba(255,255,255,0.85)" }}>⏱ 5 minutos</AppText>
-            <AppText style={{ color: "#fff", fontSize: 18, fontWeight: "900", marginTop: 8 }}>
-              Entendiendo tus emociones y pensamientos
-            </AppText>
-            <AppText style={{ color: "rgba(255,255,255,0.85)", marginTop: 8 }}>
-              Aprende a entender el origen de tus emociones y a manejarlas de forma sana.
-            </AppText>
+  <LinearGradient
+    colors={[tokens.colors.primary, tokens.colors.secondary]}
+    start={{ x: 0, y: 0 }}
+    end={{ x: 1, y: 1 }}
+    style={{
+      borderRadius: 18,
+      padding: 16,
+    }}
+  >
+    <AppText style={{ color: "rgba(255,255,255,0.85)" }}>
+      ⏱ 5 minutos
+    </AppText>
 
-            <View style={{ marginTop: 14, alignItems: "flex-start" }}>
-              <TouchableOpacity
-                onPress={() => console.log("leer ahora")}
-                style={{
-                  backgroundColor: "#fff",
-                  paddingHorizontal: 14,
-                  height: 40,
-                  borderRadius: 12,
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <AppText style={{ color: tokens.colors.primary, fontWeight: "800" }}>
-                  Leer ahora
-                </AppText>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+    <AppText
+      style={{
+        color: "#fff",
+        fontSize: 20,
+        fontFamily: "OpenSans_700Bold",
+        marginTop: 22,
+      }}
+    >
+      Entendiendo tus emociones y pensamientos
+    </AppText>
+
+    <AppText
+      style={{
+        color: "rgba(255,255,255,0.85)",
+        marginTop: 8,
+      }}
+    >
+      Aprende a entender el origen de tus emociones y a manejarlas de forma sana.
+    </AppText>
+
+    <View style={{ marginTop: 14, alignItems: "flex-start" }}>
+      <TouchableOpacity
+        onPress={() => console.log("leer ahora")}
+        style={{
+          backgroundColor: "#fff",
+          paddingHorizontal: 14,
+          height: 40,
+          borderRadius: 12,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <AppText style={{ color: tokens.colors.primary, fontWeight: "800" }}>
+          Leer ahora
+        </AppText>
+      </TouchableOpacity>
+    </View>
+  </LinearGradient>
+</View>
 
         {/* Seminario */}
+<View
+  style={{
+    marginTop: 16,
+    backgroundColor: "#fff",
+    borderRadius: 22,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.06)",
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 8 },
+  }}
+>
+  {/* Top row: icon + meta */}
+  <View style={{ flexDirection: "row", gap: 12 }}>
+    {/* Icon square */}
+    <View
+      style={{
+        width: 62,
+        height: 62,
+        borderRadius: 16,
+        backgroundColor: tokens.colors.secondary,
+        alignItems: "center",
+        justifyContent: "center",
+        shadowColor: "#000",
+        shadowOpacity: 0.18,
+        shadowRadius: 10,
+        shadowOffset: { width: 0, height: 6 },
+      }}
+    >
+      <AppText style={{ color: "#fff", fontSize: 20 }}>👥</AppText>
+    </View>
+
+    <View style={{ flex: 1 }}>
+      {/* Chip + day */}
+      <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
         <View
           style={{
-            marginTop: 16,
-            backgroundColor: "#fff",
-            borderRadius: 18,
-            padding: 16,
-            borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.06)",
+            paddingHorizontal: 12,
+            height: 26,
+            borderRadius: 13,
+            backgroundColor: "rgba(90,110,150,0.18)",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
-            <View
-              style={{
-                width: 46,
-                height: 46,
-                borderRadius: 14,
-                backgroundColor: "rgba(45,147,108,0.12)",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <AppText style={{ fontSize: 18 }}>👥</AppText>
-            </View>
-
-            <View style={{ flex: 1 }}>
-              <View style={{ flexDirection: "row", gap: 8, alignItems: "center" }}>
-                <View
-                  style={{
-                    paddingHorizontal: 10,
-                    height: 24,
-                    borderRadius: 12,
-                    backgroundColor: "rgba(0,0,0,0.06)",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <AppText style={{ fontSize: 12, fontWeight: "700" }}>Semanal</AppText>
-                </View>
-                <AppText style={{ color: tokens.colors.mutedText, fontSize: 12 }}>
-                  Todos los martes
-                </AppText>
-              </View>
-
-              <AppText style={{ fontWeight: "900", marginTop: 8 }}>
-                Seminario de Psicoeducación
-              </AppText>
-              <AppText style={{ color: tokens.colors.mutedText, marginTop: 4 }}>
-                Sumate a las clases de psicoeducación guiadas por profesionales, con espacio final para dudas y preguntas.
-              </AppText>
-            </View>
-          </View>
-
-          <View style={{ marginTop: 14 }}>
-            <TouchableOpacity
-              onPress={() => console.log("inscribirme")}
-              style={{
-                height: 44,
-                borderRadius: 12,
-                backgroundColor: tokens.colors.secondary,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <AppText style={{ color: "#fff", fontWeight: "900" }}>
-                Inscribirme ahora
-              </AppText>
-            </TouchableOpacity>
-          </View>
+          <AppText
+            style={{
+              fontSize: 12,
+              fontWeight: "700",
+              color: tokens.colors.secondary,
+            }}
+          >
+            Semanal
+          </AppText>
         </View>
+
+        <AppText style={{ color: tokens.colors.mutedText, fontSize: 12, }}>
+          Todos los Martes
+        </AppText>
+      </View>
+
+      {/* Title */}
+      <AppText
+        style={{
+          marginTop: 16,
+          fontSize: 21,
+          lineHeight: 24,
+          fontFamily: "OpenSans_700Bold",
+          color: tokens.colors.text,
+        }}
+      >
+        Seminario de{"\n"}Psicoeducación
+      </AppText>
+
+      {/* Description */}
+      <AppText
+        style={{
+          marginTop: 10,
+          color: tokens.colors.mutedText,
+          lineHeight: 20,
+        }}
+      >
+        Sumate a las clases de psicoeducación guiadas por profesionales, con un
+        espacio final para dudas y preguntas.
+      </AppText>
+    </View>
+  </View>
+
+  {/* Grey info box */}
+  <View
+    style={{
+      marginTop: 16,
+      backgroundColor: "rgba(0,0,0,0.05)",
+      borderRadius: 16,
+      paddingVertical: 14,
+      paddingHorizontal: 14,
+    }}
+  >
+    {/* Row 1 */}
+    <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <View style={{ width: 26, alignItems: "center" }}>
+        <AppText style={{ fontSize: 16 }}>📅</AppText>
+      </View>
+      <AppText style={{ color: tokens.colors.mutedText, marginLeft: 8, flex: 1, fontWeight: "700" }}>
+        Proxima sesión
+      </AppText>
+      <AppText style={{ fontWeight: "800", color: tokens.colors.text }}>
+        Junio 16, 2026
+      </AppText>
+    </View>
+
+    {/* Row 2 */}
+    <View style={{ flexDirection: "row", alignItems: "center", marginTop: 10 }}>
+      <View style={{ width: 26, alignItems: "center" }}>
+        <AppText style={{ fontSize: 16 }}>🕒</AppText>
+      </View>
+      <AppText style={{ color: tokens.colors.mutedText, marginLeft: 8, flex: 1, fontWeight: "700" }}>
+        Hora
+      </AppText>
+      <AppText style={{ fontWeight: "800", color: tokens.colors.text }}>
+        6:00 PM - 7:30 PM
+      </AppText>
+    </View>
+  </View>
+
+  {/* Members row */}
+  <View
+    style={{
+      marginTop: 14,
+      flexDirection: "row",
+      alignItems: "center",
+    }}
+  >
+    {/* Avatars stack */}
+    <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <View
+        style={{
+          width: 26,
+          height: 26,
+          borderRadius: 13,
+          backgroundColor: "rgba(45,147,108,0.35)",
+          borderWidth: 2,
+          borderColor: "#fff",
+        }}
+      />
+      <View
+        style={{
+          width: 26,
+          height: 26,
+          borderRadius: 13,
+          backgroundColor: "rgba(90,110,150,0.35)",
+          marginLeft: -10,
+          borderWidth: 2,
+          borderColor: "#fff",
+        }}
+      />
+      <View
+        style={{
+          width: 26,
+          height: 26,
+          borderRadius: 13,
+          backgroundColor: "rgba(90,110,150,0.55)",
+          marginLeft: -10,
+          borderWidth: 2,
+          borderColor: "#fff",
+        }}
+      />
+      <View
+        style={{
+          width: 30,
+          height: 30,
+          borderRadius: 15,
+          backgroundColor: tokens.colors.secondary,
+          marginLeft: -10,
+          borderWidth: 2,
+          borderColor: "#fff",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <AppText style={{ color: "#fff", fontSize: 12, fontWeight: "800" }}>
+          +12
+        </AppText>
+      </View>
+    </View>
+
+    <AppText style={{ marginLeft: 10, color: tokens.colors.mutedText, fontWeight: "600" }}>
+      15 miembros inscriptos
+    </AppText>
+  </View>
+
+  {/* CTA button */}
+  <TouchableOpacity
+    onPress={() => console.log("inscribirme ahora")}
+    style={{
+      marginTop: 14,
+      height: 54,
+      borderRadius: 16,
+      backgroundColor: tokens.colors.secondary,
+      alignItems: "center",
+      justifyContent: "center",
+      shadowColor: "#000",
+      shadowOpacity: 0.18,
+      shadowRadius: 10,
+      shadowOffset: { width: 0, height: 8 },
+      flexDirection: "row",
+      gap: 10,
+    }}
+  >
+    
+    <AppText style={{ color: "#fff", fontWeight: "900", fontSize: 16 }}>
+      Inscribirme ahora
+    </AppText>
+  </TouchableOpacity>
+</View>
+        
       </ScrollView>
     </SafeAreaView>
   );
