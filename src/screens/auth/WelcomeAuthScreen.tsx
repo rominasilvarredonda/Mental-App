@@ -1,22 +1,23 @@
 // src/screens/auth/WelcomeAuthScreen.tsx
 import { Image, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { tokens } from "../../theme/tokens";
 import { AppText } from "../../components/ui/AppText";
 import { AppButton } from "../../components/ui/AppButton";
 
-export function WelcomeAuthScreen() {
-  
-    const navigation = useNavigation<any>(); // luego lo tipamos prolijo
+type Props = {
+  navigation: any;
+};
 
+export function WelcomeAuthScreen({ navigation }: Props) {
   const onRegister = () => {
-    console.log("Ir a Register");
+    console.log("CLICK Register");
+    navigation.navigate("Register");
   };
-  
+
   const onLogin = () => {
-    console.log("Ir a Login");
+    console.log("CLICK Login");
+    navigation.navigate("Login");
   };
-  
 
   return (
     <View
@@ -35,6 +36,8 @@ export function WelcomeAuthScreen() {
           alignItems: "center",
           justifyContent: "flex-end",
           paddingTop: 8,
+          // opcional: evita que la imagen “bloquee” el toque si se superpone
+          overflow: "hidden",
         }}
       >
         <Image
@@ -53,9 +56,8 @@ export function WelcomeAuthScreen() {
         <AppText
           style={{
             fontSize: 50,
-            lineHeight: 50,
+            lineHeight: 56, // un poquito más para que no corte arriba
             fontFamily: "OpenSans_600SemiBold",
-            fontWeight: "700",
             color: tokens.colors.secondary,
           }}
         >
@@ -66,9 +68,8 @@ export function WelcomeAuthScreen() {
           style={{
             marginTop: 2,
             fontSize: 50,
-            lineHeight: 52,
+            lineHeight: 56,
             fontFamily: "OpenSans_600SemiBold",
-            fontWeight: "500",
             color: tokens.colors.primary,
           }}
         >
