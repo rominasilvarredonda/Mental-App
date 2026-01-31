@@ -13,28 +13,30 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
+import { useNavigation } from "@react-navigation/native";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import type { HomeFlowsStackParamList } from "../../navigation/HomeFlowsStack";
 
 type Mood = {
-    id: string;
-    label: string;
-    icon: keyof typeof MaterialCommunityIcons.glyphMap;
-  };
-  
-  const MOODS: Mood[] = [
-    { id: "great", label: "Genial", icon: "emoticon-excited-outline" },
-    { id: "good", label: "Bien", icon: "emoticon-happy-outline" },
-    { id: "ok", label: "Ok", icon: "emoticon-neutral-outline" },
-    { id: "bad", label: "Mal", icon: "emoticon-sad-outline" },
-    { id: "awful", label: "Muy mal", icon: "emoticon-cry-outline" },
-  ];
-  
+  id: string;
+  label: string;
+  icon: keyof typeof MaterialCommunityIcons.glyphMap;
+};
+
+const MOODS: Mood[] = [
+  { id: "great", label: "Genial", icon: "emoticon-excited-outline" },
+  { id: "good", label: "Bien", icon: "emoticon-happy-outline" },
+  { id: "ok", label: "Ok", icon: "emoticon-neutral-outline" },
+  { id: "bad", label: "Mal", icon: "emoticon-sad-outline" },
+  { id: "awful", label: "Muy mal", icon: "emoticon-cry-outline" },
+];
 
 export function HomeScreen() {
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
   const [note, setNote] = useState("");
   const [moodSaved, setMoodSaved] = useState(false);
   const progress = 0.75; // 75%
+  const navigation = useNavigation<NativeStackNavigationProp<HomeFlowsStackParamList>>();
 
   const canSave = useMemo(() => Boolean(selectedMood), [selectedMood]);
 
@@ -140,11 +142,14 @@ export function HomeScreen() {
                       }}
                     >
                       <MaterialCommunityIcons
-  name={m.icon}
-  size={24}
-  color={active ? tokens.colors.primary : tokens.colors.mutedText}
-/>
-
+                        name={m.icon}
+                        size={24}
+                        color={
+                          active
+                            ? tokens.colors.primary
+                            : tokens.colors.mutedText
+                        }
+                      />
                     </TouchableOpacity>
                   );
                 })}
@@ -381,7 +386,15 @@ export function HomeScreen() {
 
           <View style={{ marginTop: 14, flexDirection: "row", gap: 10 }}>
             <TouchableOpacity
-              onPress={() => console.log("comenzar sesión")}
+              onPress={() =>
+                navigation.navigate("SessionDetails", {
+                  psychologist: "Ps. Silvia Cardozo",
+                  dateLabel: "Lunes 2 de Febrero",
+                  startTime: "14:00",
+                  zoomCode: "123 456 7890",
+                })
+              }
+              
               style={{
                 flex: 1,
                 height: 44,
@@ -524,8 +537,12 @@ export function HomeScreen() {
                     justifyContent: "center",
                   }}
                 >
-<Feather name={it.icon} size={18} color={tokens.colors.primary} />
-</View>
+                  <Feather
+                    name={it.icon}
+                    size={18}
+                    color={tokens.colors.primary}
+                  />
+                </View>
                 <View>
                   <AppText style={{ fontWeight: "800" }}>{it.title}</AppText>
                   <AppText
@@ -547,8 +564,8 @@ export function HomeScreen() {
                   justifyContent: "center",
                 }}
               >
-<Feather name="play" size={16} color={tokens.colors.primary} />
-</TouchableOpacity>
+                <Feather name="play" size={16} color={tokens.colors.primary} />
+              </TouchableOpacity>
             </View>
           ))}
         </View>
@@ -574,12 +591,14 @@ export function HomeScreen() {
               padding: 16,
             }}
           >
-            <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
-  <Feather name="clock" size={14} color="rgba(255,255,255,0.85)" />
-  <AppText style={{ color: "rgba(255,255,255,0.85)" }}>
-    5 minutos
-  </AppText>
-</View>
+            <View
+              style={{ flexDirection: "row", alignItems: "center", gap: 6 }}
+            >
+              <Feather name="clock" size={14} color="rgba(255,255,255,0.85)" />
+              <AppText style={{ color: "rgba(255,255,255,0.85)" }}>
+                5 minutos
+              </AppText>
+            </View>
 
             <AppText
               style={{
@@ -656,8 +675,8 @@ export function HomeScreen() {
                 shadowOffset: { width: 0, height: 6 },
               }}
             >
-<Feather name="users" size={20} color="#fff" />
-</View>
+              <Feather name="users" size={20} color="#fff" />
+            </View>
 
             <View style={{ flex: 1 }}>
               {/* Chip + day */}
@@ -732,7 +751,11 @@ export function HomeScreen() {
             {/* Row 1 */}
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <View style={{ width: 26, alignItems: "center" }}>
-              <Feather name="calendar" size={16} color={tokens.colors.mutedText} />
+                <Feather
+                  name="calendar"
+                  size={16}
+                  color={tokens.colors.mutedText}
+                />
               </View>
               <AppText
                 style={{
@@ -758,7 +781,11 @@ export function HomeScreen() {
               }}
             >
               <View style={{ width: 26, alignItems: "center" }}>
-              <Feather name="clock" size={16} color={tokens.colors.mutedText} />
+                <Feather
+                  name="clock"
+                  size={16}
+                  color={tokens.colors.mutedText}
+                />
               </View>
               <AppText
                 style={{

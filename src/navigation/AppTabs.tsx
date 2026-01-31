@@ -1,8 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { tokens } from "../theme/tokens";
-import { HomeScreen } from "../screens/home/HomeScreen";
 import { View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { HomeFlowsStack } from "./HomeFlowsStack";
 
 function Placeholder() {
   return <View style={{ flex: 1, backgroundColor: tokens.colors.bg }} />;
@@ -36,10 +36,9 @@ export function AppTabs() {
         },
       })}
     >
-      <Tab.Screen name="Inicio" component={HomeScreen} />
+      <Tab.Screen name="Inicio" component={HomeFlowsStack} />
       <Tab.Screen name="Funciones" component={Placeholder} />
       <Tab.Screen name="Perfil" component={Placeholder} />
     </Tab.Navigator>
   );
 }
-
