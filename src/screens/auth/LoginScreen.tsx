@@ -35,7 +35,7 @@ export function LoginScreen() {
           right: 0,
           height: HEADER_H,
           zIndex: 999,
-          elevation: 999, // Android
+          elevation: 999,
           justifyContent: "flex-end",
           paddingHorizontal: 24,
           paddingBottom: 10,
@@ -98,7 +98,10 @@ export function LoginScreen() {
         <View style={{ marginTop: 22 }}>
           <AppButton
             label="Iniciar sesión"
-            onPress={() => console.log("login:", { email })}
+            onPress={() => {
+              // 🔑 cambio único
+              navigation.replace("Home");
+            }}
           />
         </View>
 

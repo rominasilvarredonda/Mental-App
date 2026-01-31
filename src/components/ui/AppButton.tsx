@@ -9,6 +9,7 @@ type Props = {
   onPress?: () => void;
   variant?: "primary" | "secondary";
   style?: ViewStyle;
+  disabled?: boolean;
 };
 
 export function AppButton({ label, onPress, variant = "primary", style }: Props) {

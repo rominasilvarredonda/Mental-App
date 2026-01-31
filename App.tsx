@@ -13,12 +13,14 @@ import { OnboardingScreen } from "./src/screens/onboarding/OnboardingScreen";
 import { WelcomeAuthScreen } from "./src/screens/auth/WelcomeAuthScreen";
 import { RegisterScreen } from "./src/screens/auth/RegisterScreen";
 import { LoginScreen } from "./src/screens/auth/LoginScreen";
+import { HomeScreen } from "./src/screens/home/HomeScreen";
 
 export type RootStackParamList = {
   Onboarding: undefined;
   WelcomeAuth: undefined;
   Register: undefined;
   Login: undefined;
+  Home: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -39,6 +41,7 @@ export default function App() {
         <Stack.Screen name="WelcomeAuth" component={WelcomeAuthScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
