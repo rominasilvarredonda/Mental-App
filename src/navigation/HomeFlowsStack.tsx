@@ -55,7 +55,6 @@ export function HomeFlowsStack() {
       <Stack.Screen name="RescheduleSession" component={RescheduleSessionScreen}/>
       <Stack.Screen name="NewSession" component={NewSessionScreen} />
       <Stack.Screen name="Seminars" component={SeminarsScreen} />
-
     </Stack.Navigator>
   );
 }

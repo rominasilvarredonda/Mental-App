@@ -21,8 +21,9 @@ import { useFocusEffect, useRoute } from "@react-navigation/native";
 import { useCallback } from "react";
 import { ComingSoonModal } from "../../components/common/ComingSoonModal";
 import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import type { AppTabsParamList } from "../../navigation/AppTabs";
 
+import type { AppTabsParamList } from "../../navigation/AppTabs";
+import { ExerciseInstructionsModal, type ExerciseModalData } from "../../components/exercises/ExerciseInstructionsModal";
 
 type Mood = {
   id: string;
@@ -57,11 +58,16 @@ export function HomeScreen() {
 
   const [nextSession, setNextSession] = useState<NextSession | null>(null);
   const [aiModalOpen, setAiModalOpen] = useState(false);
-  const tabNavigation = useNavigation<BottomTabNavigationProp<AppTabsParamList>>();
-
+  const tabNavigation =
+    useNavigation<BottomTabNavigationProp<AppTabsParamList>>();
+  const [exerciseModalOpen, setExerciseModalOpen] = useState(false);
+  const [selectedExercise, setSelectedExercise] =
+    useState<ExerciseModalData | null>(null);
 
   const route = useRoute<any>();
 
+  const [exerciseModalData, setExerciseModalData] = useState<ExerciseModalData | null>(null);
+  
   useFocusEffect(
     useCallback(() => {
       if (route.params?.cancelled) {
@@ -77,6 +83,61 @@ export function HomeScreen() {
       }
     }, [route.params])
   );
+  function getExerciseModalData(title: string): ExerciseModalData {
+    if (title === "Respiraciones") {
+      return {
+        title: "Ejercicio: Respiraciones",
+        suggestedBy: "Ps. Silvia Cardozo",
+        preparation:
+          "Buscá un lugar tranquilo. Sentate cómodo/a y aflojá hombros y mandíbula.",
+        steps: [
+          "Inhalá por la nariz durante 4 segundos.",
+          "Sostené el aire 2 segundos.",
+          "Exhalá lento por la boca durante 6 segundos.",
+          "Repetí 8 veces. Si te mareás, hacelo más suave.",
+        ],
+      };
+    }
+
+    if (title === "Escribir emociones") {
+      return {
+        title: "Ejercicio: Escribir emociones",
+        suggestedBy: "IA de apoyo",
+        preparation:
+          "Tené una nota o cuaderno a mano. Elegí 5 minutos sin interrupciones.",
+        steps: [
+          "Escribí cómo te sentís sin corregirte.",
+          "Nombrá la emoción principal (ej: ansiedad, tristeza, enojo).",
+          "Anotá qué situación la disparó.",
+          "Cerrá con una frase de cuidado: “Estoy haciendo lo mejor que puedo”.",
+        ],
+      };
+    }
+
+    if (title === "Meditación") {
+      return {
+        title: "Ejercicio: Meditación breve",
+        suggestedBy: "José",
+        preparation: "Poné un timer de 3 minutos. Apoyá ambos pies en el piso.",
+        steps: [
+          "Llevá tu atención a la respiración.",
+          "Cuando aparezca un pensamiento, lo notás y volvés a la respiración.",
+          "Recorré el cuerpo: frente, hombros, manos, pecho.",
+          "Al final, abrí los ojos lentamente y estirá.",
+        ],
+      };
+    }
+
+    // fallback por si agregás más en el futuro
+    return {
+      title: `Ejercicio: ${title}`,
+      suggestedBy: "Equipo Mental",
+      preparation: "Buscá un espacio cómodo y sin interrupciones.",
+      steps: [
+        "Seguí las instrucciones del profesional cuando estén disponibles.",
+      ],
+    };
+  }
 
   return (
     <SafeAreaView
@@ -479,10 +540,10 @@ export function HomeScreen() {
                   navigation.navigate("NewSession");
                 if (item.label === "AI de apoyo") {
                   setAiModalOpen(true);
-                } 
+                }
                 if (item.label === "Seminarios") {
-                    navigation.navigate("Seminars");
-                  } else console.log(item.label);
+                  navigation.navigate("Seminars");
+                } else console.log(item.label);
               }}
               style={{
                 flex: 1,
@@ -534,9 +595,12 @@ export function HomeScreen() {
               Ejercicios sugeridos
             </AppText>
             <TouchableOpacity
-  onPress={() => tabNavigation.navigate("Funciones", { screen: "SuggestedExercises" })}
-
->
+              onPress={() =>
+                tabNavigation.navigate("Funciones", {
+                  screen: "SuggestedExercises",
+                })
+              }
+            >
               <AppText style={{ color: tokens.colors.primary }}>
                 Ver todas
               </AppText>
@@ -604,7 +668,10 @@ export function HomeScreen() {
               </View>
 
               <TouchableOpacity
-                onPress={() => console.log("play", it.title)}
+                onPress={() => {
+                  setExerciseModalData(getExerciseModalData(it.title));
+                  setExerciseModalOpen(true);
+                }}
                 style={{
                   width: 34,
                   height: 34,
@@ -970,6 +1037,15 @@ export function HomeScreen() {
       <ComingSoonModal
         visible={aiModalOpen}
         onClose={() => setAiModalOpen(false)}
+      />
+      <ExerciseInstructionsModal
+        visible={exerciseModalOpen}
+        data={exerciseModalData}
+        onClose={() => setExerciseModalOpen(false)}
+        onComplete={() => {
+          console.log("Ejercicio completado:", exerciseModalData?.title);
+          setExerciseModalOpen(false);
+        }}
       />
     </SafeAreaView>
   );
