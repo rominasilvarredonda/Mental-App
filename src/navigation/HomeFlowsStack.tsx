@@ -5,6 +5,7 @@ import { CancelSessionScreen } from "../screens/home/CancelSessionScreen";
 import { RescheduleSessionScreen } from "../screens/home/RescheduleSessionScreen";
 import { NewSessionScreen } from "../screens/home/NewSessionScreen";
 import { SeminarsScreen } from "../screens/home/SeminarsScreen";
+import { DailyReadingScreen } from "../screens/home/DailyReadingScreen";
 
 
 export type HomeFlowsStackParamList = {
@@ -41,6 +42,8 @@ export type HomeFlowsStackParamList = {
   
     NewSession: undefined;
     Seminars: undefined;
+    DailyReading: undefined;
+
 
   };  
 
@@ -55,6 +58,7 @@ export function HomeFlowsStack() {
       <Stack.Screen name="RescheduleSession" component={RescheduleSessionScreen}/>
       <Stack.Screen name="NewSession" component={NewSessionScreen} />
       <Stack.Screen name="Seminars" component={SeminarsScreen} />
+      <Stack.Screen name="DailyReading" component={DailyReadingScreen} />
     </Stack.Navigator>
   );
 }

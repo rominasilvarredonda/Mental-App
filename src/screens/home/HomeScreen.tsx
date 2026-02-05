@@ -23,7 +23,10 @@ import { ComingSoonModal } from "../../components/common/ComingSoonModal";
 import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 
 import type { AppTabsParamList } from "../../navigation/AppTabs";
-import { ExerciseInstructionsModal, type ExerciseModalData } from "../../components/exercises/ExerciseInstructionsModal";
+import {
+  ExerciseInstructionsModal,
+  type ExerciseModalData,
+} from "../../components/exercises/ExerciseInstructionsModal";
 
 type Mood = {
   id: string;
@@ -66,8 +69,9 @@ export function HomeScreen() {
 
   const route = useRoute<any>();
 
-  const [exerciseModalData, setExerciseModalData] = useState<ExerciseModalData | null>(null);
-  
+  const [exerciseModalData, setExerciseModalData] =
+    useState<ExerciseModalData | null>(null);
+
   useFocusEffect(
     useCallback(() => {
       if (route.params?.cancelled) {
@@ -740,7 +744,7 @@ export function HomeScreen() {
 
             <View style={{ marginTop: 14, alignItems: "flex-start" }}>
               <TouchableOpacity
-                onPress={() => console.log("leer ahora")}
+                onPress={() => navigation.navigate("DailyReading")}
                 style={{
                   backgroundColor: "#fff",
                   paddingHorizontal: 14,
