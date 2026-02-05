@@ -28,6 +28,7 @@ import {
   type ExerciseModalData,
 } from "../../components/exercises/ExerciseInstructionsModal";
 import { ConfirmModal } from "../../components/common/ConfirmModal";
+import { NotificationsDrawer } from "../../components/notifications/NotificationsDrawer";
 
 type Mood = {
   id: string;
@@ -154,6 +155,8 @@ export function HomeScreen() {
     };
   }
 
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
+
   return (
     <SafeAreaView
       style={{ flex: 1, backgroundColor: tokens.colors.bg }}
@@ -196,7 +199,7 @@ export function HomeScreen() {
           </View>
 
           <TouchableOpacity
-            onPress={() => console.log("notificaciones")}
+            onPress={() => setNotificationsOpen(true)}
             style={{
               width: 40,
               height: 40,
@@ -842,7 +845,6 @@ export function HomeScreen() {
                   Todos los Martes
                 </AppText>
               </View>
-        
 
               {/* Title */}
               <AppText
@@ -937,121 +939,123 @@ export function HomeScreen() {
           </View>
 
           {/* Members row */}
-<View
-  style={{
-    marginTop: 14,
-    flexDirection: "row",
-    alignItems: "center",
-  }}
->
-  {/* Avatars stack */}
-  <View style={{ flexDirection: "row", alignItems: "center" }}>
-    <View
-      style={{
-        width: 26,
-        height: 26,
-        borderRadius: 13,
-        backgroundColor: "rgba(45,147,108,0.35)",
-        borderWidth: 2,
-        borderColor: "#fff",
-      }}
-    />
-    <View
-      style={{
-        width: 26,
-        height: 26,
-        borderRadius: 13,
-        backgroundColor: "rgba(90,110,150,0.35)",
-        marginLeft: -10,
-        borderWidth: 2,
-        borderColor: "#fff",
-      }}
-    />
-    <View
-      style={{
-        width: 26,
-        height: 26,
-        borderRadius: 13,
-        backgroundColor: "rgba(90,110,150,0.55)",
-        marginLeft: -10,
-        borderWidth: 2,
-        borderColor: "#fff",
-      }}
-    />
-    <View
-      style={{
-        width: 30,
-        height: 30,
-        borderRadius: 15,
-        backgroundColor: tokens.colors.secondary,
-        marginLeft: -10,
-        borderWidth: 2,
-        borderColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <AppText style={{ color: "#fff", fontSize: 12, fontWeight: "800" }}>
-        +12
-      </AppText>
-    </View>
-  </View>
+          <View
+            style={{
+              marginTop: 14,
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            {/* Avatars stack */}
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <View
+                style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 13,
+                  backgroundColor: "rgba(45,147,108,0.35)",
+                  borderWidth: 2,
+                  borderColor: "#fff",
+                }}
+              />
+              <View
+                style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 13,
+                  backgroundColor: "rgba(90,110,150,0.35)",
+                  marginLeft: -10,
+                  borderWidth: 2,
+                  borderColor: "#fff",
+                }}
+              />
+              <View
+                style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 13,
+                  backgroundColor: "rgba(90,110,150,0.55)",
+                  marginLeft: -10,
+                  borderWidth: 2,
+                  borderColor: "#fff",
+                }}
+              />
+              <View
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderRadius: 15,
+                  backgroundColor: tokens.colors.secondary,
+                  marginLeft: -10,
+                  borderWidth: 2,
+                  borderColor: "#fff",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <AppText
+                  style={{ color: "#fff", fontSize: 12, fontWeight: "800" }}
+                >
+                  +12
+                </AppText>
+              </View>
+            </View>
 
-  {/* Texto dinámico */}
-  {seminarRegistered ? (
-    <View
-      style={{
-        marginLeft: 10,
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 6,
-      }}
-    >
-      {/* Si ya tenés Feather importado arriba, esto funciona */}
-      <Feather name="check" size={16} color={tokens.colors.primary} />
-      <AppText style={{ fontWeight: "900", color: tokens.colors.primary }}>
-        Ya estás inscripto
-      </AppText>
-    </View>
-  ) : (
-    <AppText
-      style={{
-        marginLeft: 10,
-        color: tokens.colors.mutedText,
-        fontWeight: "600",
-      }}
-    >
-      15 miembros inscriptos
-    </AppText>
-  )}
-</View>
-
+            {/* Texto dinámico */}
+            {seminarRegistered ? (
+              <View
+                style={{
+                  marginLeft: 10,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 6,
+                }}
+              >
+                {/* Si ya tenés Feather importado arriba, esto funciona */}
+                <Feather name="check" size={16} color={tokens.colors.primary} />
+                <AppText
+                  style={{ fontWeight: "900", color: tokens.colors.primary }}
+                >
+                  Ya estás inscripto
+                </AppText>
+              </View>
+            ) : (
+              <AppText
+                style={{
+                  marginLeft: 10,
+                  color: tokens.colors.mutedText,
+                  fontWeight: "600",
+                }}
+              >
+                15 miembros inscriptos
+              </AppText>
+            )}
+          </View>
 
           {/* CTA button */}
           <TouchableOpacity
-  onPress={() => {
-    if (!seminarRegistered) setSeminarConfirmOpen(true);
-    else setSeminarMaterialOpen(true);
-  }}
-  style={{
-    marginTop: 14,
-    height: 54,
-    borderRadius: 16,
-    backgroundColor: tokens.colors.secondary,
-    alignItems: "center",
-    justifyContent: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.18,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 8 },
-  }}
-  activeOpacity={0.9}
->
-  <AppText style={{ color: "#fff", fontWeight: "900", fontSize: 16 }}>
-    {seminarRegistered ? "Ver material" : "Inscribirme ahora"}
-  </AppText>
-</TouchableOpacity>
-
+            onPress={() => {
+              if (!seminarRegistered) setSeminarConfirmOpen(true);
+              else setSeminarMaterialOpen(true);
+            }}
+            style={{
+              marginTop: 14,
+              height: 54,
+              borderRadius: 16,
+              backgroundColor: tokens.colors.secondary,
+              alignItems: "center",
+              justifyContent: "center",
+              shadowColor: "#000",
+              shadowOpacity: 0.18,
+              shadowRadius: 10,
+              shadowOffset: { width: 0, height: 8 },
+            }}
+            activeOpacity={0.9}
+          >
+            <AppText style={{ color: "#fff", fontWeight: "900", fontSize: 16 }}>
+              {seminarRegistered ? "Ver material" : "Inscribirme ahora"}
+            </AppText>
+          </TouchableOpacity>
         </View>
       </ScrollView>
       <SessionActionSheet
@@ -1103,6 +1107,10 @@ export function HomeScreen() {
         iconName="file-text"
         title="Material no disponible aún"
         description="El material del seminario todavía no está publicado. El profesional a cargo lo subirá a la brevedad."
+      />
+      <NotificationsDrawer
+        visible={notificationsOpen}
+        onClose={() => setNotificationsOpen(false)}
       />
     </SafeAreaView>
   );
