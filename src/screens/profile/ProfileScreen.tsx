@@ -15,16 +15,17 @@ type Row = {
   onPress: () => void;
 };
 
-function SectionCard({
-  title,
-  rows,
-}: {
-  title: string;
-  rows: Row[];
-}) {
+function SectionCard({ title, rows }: { title: string; rows: Row[] }) {
   return (
     <View style={{ marginTop: 16 }}>
-      <AppText style={{ color: tokens.colors.mutedText, fontSize: 12, letterSpacing: 1, fontWeight: "800" }}>
+      <AppText
+        style={{
+          color: tokens.colors.mutedText,
+          fontSize: 12,
+          letterSpacing: 1,
+          fontWeight: "800",
+        }}
+      >
         {title.toUpperCase()}
       </AppText>
 
@@ -90,7 +91,11 @@ function SectionCard({
                 {r.label}
               </AppText>
 
-              <Feather name="chevron-right" size={18} color={tokens.colors.mutedText} />
+              <Feather
+                name="chevron-right"
+                size={18}
+                color={tokens.colors.mutedText}
+              />
             </TouchableOpacity>
           );
         })}
@@ -100,20 +105,20 @@ function SectionCard({
 }
 
 export function ProfileScreen() {
-  const navigation = useNavigation<NativeStackNavigationProp<ProfileStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<ProfileStackParamList>>();
   const profileRows: Row[] = [
     {
       key: "personal_info",
       label: "Información personal",
       icon: "user",
       onPress: () => navigation.navigate("PersonalInfo"),
-
     },
     {
       key: "my_psychologist",
       label: "Mi psicólogo",
       icon: "heart",
-      onPress: () => console.log("Ir a Mi psicólogo"),
+      onPress: () => navigation.navigate("MyPsychologist"),
     },
   ];
 
@@ -175,7 +180,10 @@ export function ProfileScreen() {
   ];
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: tokens.colors.bg }} edges={["top"]}>
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: tokens.colors.bg }}
+      edges={["top"]}
+    >
       <ScrollView
         contentContainerStyle={{
           paddingHorizontal: 20,
@@ -185,9 +193,17 @@ export function ProfileScreen() {
         showsVerticalScrollIndicator={false}
       >
         {/* Header */}
-        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
           <View>
-            <AppText style={{ fontSize: 21, fontWeight: "900" }}>Perfil</AppText>
+            <AppText style={{ fontSize: 21, fontWeight: "900" }}>
+              Perfil
+            </AppText>
           </View>
 
           {/* Avatar placeholder */}
@@ -248,8 +264,14 @@ export function ProfileScreen() {
                 <Feather name="log-out" size={18} color={tokens.colors.text} />
               </View>
 
-              <AppText style={{ flex: 1, fontWeight: "900" }}>Cerrar sesión</AppText>
-              <Feather name="chevron-right" size={18} color={tokens.colors.mutedText} />
+              <AppText style={{ flex: 1, fontWeight: "900" }}>
+                Cerrar sesión
+              </AppText>
+              <Feather
+                name="chevron-right"
+                size={18}
+                color={tokens.colors.mutedText}
+              />
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -279,12 +301,24 @@ export function ProfileScreen() {
               <AppText style={{ flex: 1, fontWeight: "900", color: "#DC2626" }}>
                 Eliminar cuenta
               </AppText>
-              <Feather name="chevron-right" size={18} color={tokens.colors.mutedText} />
+              <Feather
+                name="chevron-right"
+                size={18}
+                color={tokens.colors.mutedText}
+              />
             </TouchableOpacity>
           </View>
 
-          <AppText style={{ marginTop: 10, color: tokens.colors.mutedText, fontSize: 12, lineHeight: 16 }}>
-            *Eliminar cuenta es irreversible. Luego lo conectamos con confirmación modal.
+          <AppText
+            style={{
+              marginTop: 10,
+              color: tokens.colors.mutedText,
+              fontSize: 12,
+              lineHeight: 16,
+            }}
+          >
+            *Eliminar cuenta es irreversible. Luego lo conectamos con
+            confirmación modal.
           </AppText>
         </View>
       </ScrollView>
