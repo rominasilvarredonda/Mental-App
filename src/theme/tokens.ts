@@ -9,6 +9,9 @@ export const tokens = {
     primary: "#2D936C",     // verde principal
     secondary: "#536895",        // azul del diseño
     mutedText: "#64748B",
+    bgElevated: "#F1F3F7", 
+    danger: "#DC2626", 
+    card: "#FCFEFF",
   },
   radius: {
     sm: 12,

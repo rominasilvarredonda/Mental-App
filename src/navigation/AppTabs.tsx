@@ -4,6 +4,8 @@ import { View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { HomeFlowsStack } from "./HomeFlowsStack";
 import { FunctionsStack } from "./FunctionsStack";
+import { ProfileScreen } from "../screens/profile/ProfileScreen";
+import { ProfileStack } from "./ProfileStack";
 
 
 function Placeholder() {
@@ -45,7 +47,7 @@ export function AppTabs() {
     >
       <Tab.Screen name="Inicio" component={HomeFlowsStack} />
       <Tab.Screen name="Funciones" component={FunctionsStack} />
-      <Tab.Screen name="Perfil" component={Placeholder} />
+      <Tab.Screen name="Perfil" component={ProfileStack} />
       
     </Tab.Navigator>
   );
