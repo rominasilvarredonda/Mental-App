@@ -50,7 +50,7 @@ export function MyPsychologistScreen({ navigation }: Props) {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [requestSent, setRequestSent] = useState(false);
 
-  // Mock data (luego viene de backend)
+  // Mock data (dsp viene de backend)
   const psychologist = {
     name: "Ps. Silvia Cardozo",
     approach: "TCC (Terapia Cognitivo Conductual)",
