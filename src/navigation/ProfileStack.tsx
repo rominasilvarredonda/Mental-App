@@ -2,11 +2,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ProfileScreen } from "../screens/profile/ProfileScreen";
 import { PersonalInfoScreen } from "../screens/profile/PersonalInfo";
 import { MyPsychologistScreen } from "../screens/profile/MyPsychologistScreen";
+import { SubscriptionScreen } from "../screens/profile/SubscriptionScreen";
 
 export type ProfileStackParamList = {
   ProfileHome: undefined;
   PersonalInfo: undefined;
   MyPsychologist: undefined;
+  Subscription: undefined;
 };
 
 const Stack = createNativeStackNavigator<ProfileStackParamList>();
@@ -17,6 +19,7 @@ export function ProfileStack() {
       <Stack.Screen name="ProfileHome" component={ProfileScreen} />
       <Stack.Screen name="PersonalInfo" component={PersonalInfoScreen} />
       <Stack.Screen name="MyPsychologist" component={MyPsychologistScreen} />
+      <Stack.Screen name="Subscription" component={SubscriptionScreen} />
     </Stack.Navigator>
   );
 }

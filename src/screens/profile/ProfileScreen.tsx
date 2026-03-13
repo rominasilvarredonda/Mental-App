@@ -127,7 +127,7 @@ export function ProfileScreen() {
       key: "subscription",
       label: "Suscripción",
       icon: "credit-card",
-      onPress: () => console.log("Ir a Suscripción"),
+      onPress: () => navigation.navigate("Subscription"),
     },
     {
       key: "payment_methods",
