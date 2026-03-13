@@ -6,7 +6,7 @@ import { HomeFlowsStack } from "./HomeFlowsStack";
 import { FunctionsStack } from "./FunctionsStack";
 import { ProfileScreen } from "../screens/profile/ProfileScreen";
 import { ProfileStack } from "./ProfileStack";
-
+import { FunctionsScreen } from "../screens/functions/FunctionsScreen";
 
 function Placeholder() {
   return <View style={{ flex: 1, backgroundColor: tokens.colors.bg }} />;
@@ -46,7 +46,7 @@ export function AppTabs() {
       })}
     >
       <Tab.Screen name="Inicio" component={HomeFlowsStack} />
-      <Tab.Screen name="Funciones" component={FunctionsStack} />
+      <Tab.Screen name="Funciones" component={FunctionsScreen} />
       <Tab.Screen name="Perfil" component={ProfileStack} />
       
     </Tab.Navigator>

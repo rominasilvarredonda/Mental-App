@@ -133,7 +133,7 @@ export function ProfileScreen() {
       key: "payment_methods",
       label: "Medios de pago",
       icon: "dollar-sign",
-      onPress: () => console.log("Ir a Medios de pago"),
+      onPress: () => navigation.navigate("PaymentMethods"),
     },
   ];
 
