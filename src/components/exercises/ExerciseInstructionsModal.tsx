@@ -40,7 +40,7 @@ export function ExerciseInstructionsModal({
             borderRadius: 20,
             overflow: "hidden",
             borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.06)",
+            borderColor: "rgba(83,104,149,0.14)",
           }}
         >
           {/* Header */}
@@ -50,7 +50,7 @@ export function ExerciseInstructionsModal({
                 width: 42,
                 height: 42,
                 borderRadius: 14,
-                backgroundColor: "rgba(45,147,108,0.12)",
+                backgroundColor: "rgba(5,50,37,0.12)",
                 alignItems: "center",
                 justifyContent: "center",
               }}
@@ -75,7 +75,7 @@ export function ExerciseInstructionsModal({
                 borderRadius: 18,
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: "rgba(0,0,0,0.04)",
+                backgroundColor: "rgba(174,197,235,0.16)",
               }}
             >
               <Feather name="x" size={18} color={tokens.colors.text} />
@@ -101,7 +101,7 @@ export function ExerciseInstructionsModal({
                       width: 22,
                       height: 22,
                       borderRadius: 11,
-                      backgroundColor: "rgba(45,147,108,0.14)",
+                      backgroundColor: "rgba(5,50,37,0.14)",
                       alignItems: "center",
                       justifyContent: "center",
                       marginTop: 1,
@@ -120,7 +120,7 @@ export function ExerciseInstructionsModal({
           </ScrollView>
 
           {/* Footer buttons */}
-          <View style={{ padding: 16, flexDirection: "row", gap: 10, borderTopWidth: 1, borderTopColor: "rgba(0,0,0,0.06)" }}>
+          <View style={{ padding: 16, flexDirection: "row", gap: 10, borderTopWidth: 1, borderTopColor: "rgba(83,104,149,0.14)" }}>
             <TouchableOpacity
               onPress={onClose}
               style={{
@@ -129,7 +129,7 @@ export function ExerciseInstructionsModal({
                 borderRadius: 14,
                 backgroundColor: "#fff",
                 borderWidth: 1,
-                borderColor: "rgba(0,0,0,0.10)",
+                borderColor: "rgba(83,104,149,0.20)",
                 alignItems: "center",
                 justifyContent: "center",
               }}

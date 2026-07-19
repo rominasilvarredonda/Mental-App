@@ -39,7 +39,7 @@ export function RescheduleSessionScreen({ route, navigation }: Props) {
             borderRadius: 20,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "rgba(0,0,0,0.04)",
+            backgroundColor: "rgba(174,197,235,0.16)",
           }}
         >
           <Feather name="chevron-left" size={20} color={tokens.colors.text} />
@@ -70,9 +70,9 @@ export function RescheduleSessionScreen({ route, navigation }: Props) {
                   paddingHorizontal: 12,
                   paddingVertical: 10,
                   borderRadius: 14,
-                  backgroundColor: active ? "rgba(45,147,108,0.14)" : "#fff",
+                  backgroundColor: active ? "rgba(5,50,37,0.14)" : "#fff",
                   borderWidth: 1,
-                  borderColor: active ? tokens.colors.primary : "rgba(0,0,0,0.08)",
+                  borderColor: active ? tokens.colors.primary : "rgba(83,104,149,0.16)",
                 }}
               >
                 <AppText style={{ fontWeight: "800", color: tokens.colors.text }}>{d}</AppText>
@@ -99,9 +99,9 @@ export function RescheduleSessionScreen({ route, navigation }: Props) {
                   borderRadius: 14,
                   alignItems: "center",
                   justifyContent: "center",
-                  backgroundColor: active ? "rgba(45,147,108,0.14)" : "#fff",
+                  backgroundColor: active ? "rgba(5,50,37,0.14)" : "#fff",
                   borderWidth: 1,
-                  borderColor: active ? tokens.colors.primary : "rgba(0,0,0,0.08)",
+                  borderColor: active ? tokens.colors.primary : "rgba(83,104,149,0.16)",
                 }}
               >
                 <AppText style={{ fontWeight: "900", color: tokens.colors.text }}>{t}</AppText>

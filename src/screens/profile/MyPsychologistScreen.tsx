@@ -26,7 +26,7 @@ function InfoRow({
           width: 38,
           height: 38,
           borderRadius: 14,
-          backgroundColor: "rgba(45,147,108,0.12)",
+          backgroundColor: "rgba(5,50,37,0.12)",
           alignItems: "center",
           justifyContent: "center",
         }}
@@ -74,7 +74,7 @@ export function MyPsychologistScreen({ navigation }: Props) {
             borderRadius: 20,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "rgba(0,0,0,0.04)",
+            backgroundColor: "rgba(174,197,235,0.16)",
           }}
           activeOpacity={0.9}
         >
@@ -97,8 +97,8 @@ export function MyPsychologistScreen({ navigation }: Props) {
             borderRadius: 18,
             padding: 16,
             borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.06)",
-            shadowColor: "#000",
+            borderColor: "rgba(83,104,149,0.14)",
+            shadowColor: tokens.colors.primary,
             shadowOpacity: 0.06,
             shadowRadius: 10,
             shadowOffset: { width: 0, height: 6 },
@@ -130,7 +130,7 @@ export function MyPsychologistScreen({ navigation }: Props) {
           <View
             style={{
               marginTop: 14,
-              backgroundColor: "rgba(0,0,0,0.04)",
+              backgroundColor: "rgba(174,197,235,0.16)",
               borderRadius: 16,
               padding: 14,
             }}
@@ -153,7 +153,7 @@ export function MyPsychologistScreen({ navigation }: Props) {
                 borderRadius: 16,
                 paddingVertical: 12,
                 paddingHorizontal: 12,
-                backgroundColor: "rgba(45,147,108,0.10)",
+                backgroundColor: "rgba(5,50,37,0.10)",
                 flexDirection: "row",
                 alignItems: "center",
                 gap: 8,
@@ -202,7 +202,7 @@ export function MyPsychologistScreen({ navigation }: Props) {
               borderRadius: 18,
               padding: 16,
               borderWidth: 1,
-              borderColor: "rgba(0,0,0,0.06)",
+              borderColor: "rgba(83,104,149,0.14)",
             }}
           >
             <AppText style={{ fontSize: 16, fontWeight: "900" }}>
@@ -221,7 +221,7 @@ export function MyPsychologistScreen({ navigation }: Props) {
                   flex: 1,
                   height: 50,
                   borderRadius: 16,
-                  backgroundColor: "rgba(0,0,0,0.04)",
+                  backgroundColor: "rgba(174,197,235,0.16)",
                   alignItems: "center",
                   justifyContent: "center",
                 }}

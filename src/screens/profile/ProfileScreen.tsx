@@ -35,8 +35,8 @@ function SectionCard({ title, rows }: { title: string; rows: Row[] }) {
           backgroundColor: "#fff",
           borderRadius: 18,
           borderWidth: 1,
-          borderColor: "rgba(0,0,0,0.06)",
-          shadowColor: "#000",
+          borderColor: "rgba(83,104,149,0.14)",
+          shadowColor: tokens.colors.primary,
           shadowOpacity: 0.06,
           shadowRadius: 10,
           shadowOffset: { width: 0, height: 6 },
@@ -59,7 +59,7 @@ function SectionCard({ title, rows }: { title: string; rows: Row[] }) {
                 alignItems: "center",
                 gap: 12,
                 borderBottomWidth: isLast ? 0 : 1,
-                borderBottomColor: "rgba(0,0,0,0.06)",
+                borderBottomColor: "rgba(83,104,149,0.14)",
               }}
             >
               <View
@@ -69,7 +69,7 @@ function SectionCard({ title, rows }: { title: string; rows: Row[] }) {
                   borderRadius: 14,
                   backgroundColor: danger
                     ? "rgba(220,38,38,0.10)"
-                    : "rgba(45,147,108,0.12)",
+                    : "rgba(5,50,37,0.12)",
                   alignItems: "center",
                   justifyContent: "center",
                 }}
@@ -212,7 +212,7 @@ export function ProfileScreen() {
               width: 48,
               height: 48,
               borderRadius: 24,
-              backgroundColor: "rgba(0,0,0,0.06)",
+              backgroundColor: "rgba(83,104,149,0.14)",
             }}
           />
         </View>
@@ -230,8 +230,8 @@ export function ProfileScreen() {
               backgroundColor: "#fff",
               borderRadius: 18,
               borderWidth: 1,
-              borderColor: "rgba(0,0,0,0.06)",
-              shadowColor: "#000",
+              borderColor: "rgba(83,104,149,0.14)",
+              shadowColor: tokens.colors.primary,
               shadowOpacity: 0.06,
               shadowRadius: 10,
               shadowOffset: { width: 0, height: 6 },
@@ -248,7 +248,7 @@ export function ProfileScreen() {
                 alignItems: "center",
                 gap: 12,
                 borderBottomWidth: 1,
-                borderBottomColor: "rgba(0,0,0,0.06)",
+                borderBottomColor: "rgba(83,104,149,0.14)",
               }}
             >
               <View
@@ -256,7 +256,7 @@ export function ProfileScreen() {
                   width: 38,
                   height: 38,
                   borderRadius: 14,
-                  backgroundColor: "rgba(0,0,0,0.05)",
+                  backgroundColor: "rgba(83,104,149,0.08)",
                   alignItems: "center",
                   justifyContent: "center",
                 }}

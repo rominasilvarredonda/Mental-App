@@ -29,7 +29,7 @@ function PaymentOption({
         borderRadius: 16,
         padding: 14,
         borderWidth: 1,
-        borderColor: "rgba(0,0,0,0.06)",
+        borderColor: "rgba(83,104,149,0.14)",
         flexDirection: "row",
         alignItems: "center",
         gap: 12,
@@ -40,7 +40,7 @@ function PaymentOption({
           width: 42,
           height: 42,
           borderRadius: 14,
-          backgroundColor: "rgba(45,147,108,0.12)",
+          backgroundColor: "rgba(5,50,37,0.12)",
           alignItems: "center",
           justifyContent: "center",
         }}
@@ -89,7 +89,7 @@ export function PaymentMethodsScreen({ navigation }: Props) {
             borderRadius: 20,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "rgba(0,0,0,0.04)",
+            backgroundColor: "rgba(174,197,235,0.16)",
           }}
         >
           <Feather name="chevron-left" size={20} color={tokens.colors.text} />
@@ -120,8 +120,8 @@ export function PaymentMethodsScreen({ navigation }: Props) {
             borderRadius: 18,
             padding: 16,
             borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.06)",
-            shadowColor: "#000",
+            borderColor: "rgba(83,104,149,0.14)",
+            shadowColor: tokens.colors.primary,
             shadowOpacity: 0.06,
             shadowRadius: 10,
             shadowOffset: { width: 0, height: 6 },
@@ -235,7 +235,7 @@ export function PaymentMethodsScreen({ navigation }: Props) {
         <View
           style={{
             marginTop: 16,
-            backgroundColor: "rgba(0,0,0,0.04)",
+            backgroundColor: "rgba(174,197,235,0.16)",
             borderRadius: 16,
             padding: 14,
           }}

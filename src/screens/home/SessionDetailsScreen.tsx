@@ -34,7 +34,7 @@ export function SessionDetailsScreen({ route, navigation }: Props) {
             borderRadius: 20,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "rgba(0,0,0,0.04)",
+            backgroundColor: "rgba(174,197,235,0.16)",
           }}
         >
           <Feather name="chevron-left" size={20} color={tokens.colors.text} />

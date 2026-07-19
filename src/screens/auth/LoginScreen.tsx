@@ -128,11 +128,11 @@ export function LoginScreen() {
 
         {/* Separador */}
         <View style={{ marginTop: 22, flexDirection: "row", alignItems: "center" }}>
-          <View style={{ flex: 1, height: 1, backgroundColor: "rgba(0,0,0,0.12)" }} />
+          <View style={{ flex: 1, height: 1, backgroundColor: "rgba(83,104,149,0.22)" }} />
           <AppText style={{ marginHorizontal: 12, color: tokens.colors.mutedText }}>
             O inicia sesión con
           </AppText>
-          <View style={{ flex: 1, height: 1, backgroundColor: "rgba(0,0,0,0.12)" }} />
+          <View style={{ flex: 1, height: 1, backgroundColor: "rgba(83,104,149,0.22)" }} />
         </View>
       </View>
     </View>

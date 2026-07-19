@@ -28,11 +28,13 @@ export function AppTabs() {
         tabBarActiveTintColor: tokens.colors.primary,
         tabBarInactiveTintColor: tokens.colors.mutedText,
         tabBarStyle: {
-          height: 76,
-          paddingTop: 10,
-          paddingBottom: 18,
-          borderTopWidth: 0,
-          backgroundColor: "#fff",
+          height: 82,
+          paddingTop: 11,
+          paddingBottom: 20,
+          borderTopWidth: 1,
+          borderTopColor: tokens.colors.border,
+          backgroundColor: tokens.colors.surface,
+          ...tokens.shadow.floating,
         },
         tabBarIcon: ({ color, size }) => {
           let iconName: keyof typeof Ionicons.glyphMap = "home-outline";

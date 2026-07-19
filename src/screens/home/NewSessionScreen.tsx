@@ -65,7 +65,7 @@ export function NewSessionScreen({ navigation }: Props) {
             borderRadius: 20,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "rgba(0,0,0,0.04)",
+            backgroundColor: "rgba(174,197,235,0.16)",
           }}
         >
           <Feather name="chevron-left" size={20} color={tokens.colors.text} />
@@ -94,7 +94,7 @@ export function NewSessionScreen({ navigation }: Props) {
             borderRadius: 18,
             padding: 14,
             borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.06)",
+            borderColor: "rgba(83,104,149,0.14)",
           }}
         >
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
@@ -119,7 +119,7 @@ export function NewSessionScreen({ navigation }: Props) {
                     borderRadius: 12,
                     marginBottom: 6,
                     backgroundColor: active
-                      ? "rgba(45,147,108,0.18)"
+                      ? "rgba(5,50,37,0.18)"
                       : "transparent",
                     opacity: hasAvailability ? 1 : 0.25,
                   }}
@@ -171,12 +171,12 @@ export function NewSessionScreen({ navigation }: Props) {
                         alignItems: "center",
                         justifyContent: "center",
                         backgroundColor: active
-                          ? "rgba(45,147,108,0.18)"
+                          ? "rgba(5,50,37,0.18)"
                           : "#fff",
                         borderWidth: 1,
                         borderColor: active
                           ? tokens.colors.primary
-                          : "rgba(0,0,0,0.08)",
+                          : "rgba(83,104,149,0.16)",
                       }}
                     >
                       <AppText style={{ fontWeight: "900" }}>{h}</AppText>

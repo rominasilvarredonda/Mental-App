@@ -36,7 +36,7 @@ export function CancelSessionScreen({ route, navigation }: Props) {
             borderRadius: 20,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "rgba(0,0,0,0.04)",
+            backgroundColor: "rgba(174,197,235,0.16)",
           }}
         >
           <Feather name="chevron-left" size={20} color={tokens.colors.text} />
@@ -53,7 +53,7 @@ export function CancelSessionScreen({ route, navigation }: Props) {
             backgroundColor: "#fff",
             borderRadius: 18,
             borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.06)",
+            borderColor: "rgba(83,104,149,0.14)",
             padding: 16,
           }}
         >

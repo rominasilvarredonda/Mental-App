@@ -32,11 +32,11 @@ export function SeminarsScreen() {
         {/* ===== Seminario anterior ===== */}
         <View
           style={{
-            backgroundColor: "rgba(0,0,0,0.04)",
+            backgroundColor: "rgba(174,197,235,0.16)",
             borderRadius: 18,
             padding: 16,
             borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.06)",
+            borderColor: "rgba(83,104,149,0.14)",
             marginBottom: 20,
           }}
         >
@@ -89,7 +89,7 @@ export function SeminarsScreen() {
                   alignItems: "center",
                   justifyContent: "center",
                   borderWidth: 1,
-                  borderColor: "rgba(0,0,0,0.08)",
+                  borderColor: "rgba(83,104,149,0.16)",
                 }}
               >
                 <AppText style={{ fontWeight: "800" }}>Ver grabación</AppText>
@@ -105,7 +105,7 @@ export function SeminarsScreen() {
                   alignItems: "center",
                   justifyContent: "center",
                   borderWidth: 1,
-                  borderColor: "rgba(0,0,0,0.08)",
+                  borderColor: "rgba(83,104,149,0.16)",
                 }}
               >
                 <AppText style={{ fontWeight: "800" }}>Material</AppText>
@@ -121,8 +121,8 @@ export function SeminarsScreen() {
             borderRadius: 20,
             padding: 18,
             borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.06)",
-            shadowColor: "#000",
+            borderColor: "rgba(83,104,149,0.14)",
+            shadowColor: tokens.colors.primary,
             shadowOpacity: 0.08,
             shadowRadius: 12,
             shadowOffset: { width: 0, height: 6 },

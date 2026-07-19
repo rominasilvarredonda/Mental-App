@@ -43,7 +43,7 @@ export function ComingSoonModal({
               width: 52,
               height: 52,
               borderRadius: 26,
-              backgroundColor: "rgba(45,147,108,0.12)",
+              backgroundColor: "rgba(5,50,37,0.12)",
               alignItems: "center",
               justifyContent: "center",
               marginBottom: 14,

@@ -12,24 +12,25 @@ type Props = {
   disabled?: boolean;
 };
 
-export function AppButton({ label, onPress, variant = "primary", style }: Props) {
+export function AppButton({ label, onPress, variant = "primary", style, disabled = false }: Props) {
   const radius = tokens.radius.lg;
 
   if (variant === "primary") {
     return (
-      <Pressable onPress={onPress} style={[{ width: "100%" }, style]}>
+      <Pressable disabled={disabled} onPress={onPress} style={({ pressed }) => [{ width: "100%", opacity: disabled ? 0.42 : pressed ? 0.9 : 1, transform: [{ scale: pressed ? 0.985 : 1 }] }, style]}>
         <LinearGradient
-          colors={[tokens.colors.primary, tokens.colors.secondary]}
+          colors={tokens.gradients.primary}
           start={{ x: 0, y: 0.5 }}
           end={{ x: 1, y: 0.5 }}
           style={{
-            height: 56,
+            height: 54,
             borderRadius: radius,
+            ...tokens.shadow.soft,
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <AppText style={{ color: "#FFFFFF", fontFamily: "OpenSans_700Bold", fontSize: 16 }}>
+          <AppText style={{ color: tokens.colors.white, ...tokens.typography.button }}>
             {label}
           </AppText>
         </LinearGradient>
@@ -41,19 +42,24 @@ export function AppButton({ label, onPress, variant = "primary", style }: Props)
   return (
     <Pressable
       onPress={onPress}
-      style={[
+      disabled={disabled}
+      style={({ pressed }) => [
         {
-          height: 56,
+          height: 54,
           borderRadius: radius,
           alignItems: "center",
           justifyContent: "center",
           width: "100%",
-          backgroundColor: "#A9BDB3", // parecido al verde/gris de tu botón “Saltar”
+          backgroundColor: tokens.colors.secondarySoft,
+          borderWidth: 1,
+          borderColor: tokens.colors.borderStrong,
+          opacity: disabled ? 0.42 : pressed ? 0.8 : 1,
+          transform: [{ scale: pressed ? 0.985 : 1 }],
         },
         style,
       ]}
     >
-      <AppText style={{ color: "#FFFFFF", fontFamily: "OpenSans_700Bold", fontSize: 16 }}>
+      <AppText style={{ color: tokens.colors.heading, ...tokens.typography.button }}>
         {label}
       </AppText>
     </Pressable>

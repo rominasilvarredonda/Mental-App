@@ -21,15 +21,12 @@ function FeatureCard({ item }: { item: Feature }) {
       onPress={item.onPress}
       style={{
         flex: 1,
-        backgroundColor: "#fff",
-        borderRadius: 20,
-        padding: 16,
+        backgroundColor: item.featured ? tokens.colors.skySoft : tokens.colors.surface,
+        borderRadius: tokens.radius.lg,
+        padding: 18,
         borderWidth: 1,
-        borderColor: "rgba(0,0,0,0.06)",
-        shadowColor: "#000",
-        shadowOpacity: 0.06,
-        shadowRadius: 10,
-        shadowOffset: { width: 0, height: 6 },
+        borderColor: tokens.colors.border,
+        ...tokens.shadow.soft,
         minHeight: 158,
         justifyContent: "space-between",
       }}
@@ -42,7 +39,7 @@ function FeatureCard({ item }: { item: Feature }) {
             borderRadius: 16,
             backgroundColor: item.featured
               ? "rgba(90,110,150,0.18)"
-              : "rgba(45,147,108,0.12)",
+              : tokens.colors.sageSoft,
             alignItems: "center",
             justifyContent: "center",
           }}
@@ -85,7 +82,7 @@ function FeatureCard({ item }: { item: Feature }) {
             paddingHorizontal: 10,
             height: 24,
             borderRadius: 12,
-            backgroundColor: "rgba(0,0,0,0.05)",
+            backgroundColor: "rgba(83,104,149,0.08)",
             alignItems: "center",
             justifyContent: "center",
           }}
@@ -184,7 +181,7 @@ export function FunctionsScreen() {
       >
         {/* Header */}
         <View>
-          <AppText style={{ fontSize: 22, fontWeight: "900", color: tokens.colors.text }}>
+          <AppText variant="title" style={{ color: tokens.colors.heading }}>
             Funciones
           </AppText>
 
@@ -202,16 +199,13 @@ export function FunctionsScreen() {
         {/* Intro card */}
         <View
           style={{
-            marginTop: 18,
-            backgroundColor: "#fff",
-            borderRadius: 20,
-            padding: 16,
+            marginTop: 24,
+            backgroundColor: tokens.colors.primarySoft,
+            borderRadius: tokens.radius.xl,
+            padding: 22,
             borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.06)",
-            shadowColor: "#000",
-            shadowOpacity: 0.06,
-            shadowRadius: 10,
-            shadowOffset: { width: 0, height: 6 },
+            borderColor: tokens.colors.border,
+            ...tokens.shadow.soft,
           }}
         >
           <AppText

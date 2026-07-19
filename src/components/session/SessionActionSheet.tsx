@@ -46,7 +46,7 @@ export function SessionActionSheet({
               width: 44,
               height: 5,
               borderRadius: 999,
-              backgroundColor: "rgba(0,0,0,0.12)",
+              backgroundColor: "rgba(83,104,149,0.22)",
               marginBottom: 12,
             }}
           />
@@ -70,7 +70,7 @@ export function SessionActionSheet({
               borderRadius: 16,
               backgroundColor: "rgba(0,0,0,0.03)",
               borderWidth: 1,
-              borderColor: "rgba(0,0,0,0.06)",
+              borderColor: "rgba(83,104,149,0.14)",
             }}
             activeOpacity={0.85}
           >
@@ -113,7 +113,7 @@ export function SessionActionSheet({
               borderRadius: 16,
               backgroundColor: "rgba(0,0,0,0.03)",
               borderWidth: 1,
-              borderColor: "rgba(0,0,0,0.06)",
+              borderColor: "rgba(83,104,149,0.14)",
             }}
             activeOpacity={0.85}
           >
@@ -122,7 +122,7 @@ export function SessionActionSheet({
                 width: 38,
                 height: 38,
                 borderRadius: 14,
-                backgroundColor: "rgba(45,147,108,0.12)",
+                backgroundColor: "rgba(5,50,37,0.12)",
                 alignItems: "center",
                 justifyContent: "center",
               }}
@@ -151,7 +151,7 @@ export function SessionActionSheet({
               justifyContent: "center",
               backgroundColor: "#fff",
               borderWidth: 1,
-              borderColor: "rgba(0,0,0,0.10)",
+              borderColor: "rgba(83,104,149,0.20)",
             }}
             activeOpacity={0.9}
           >

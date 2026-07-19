@@ -35,7 +35,7 @@ export function DailyReadingScreen({ navigation }: Props) {
             borderRadius: 20,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "rgba(0,0,0,0.04)",
+            backgroundColor: "rgba(174,197,235,0.16)",
           }}
           activeOpacity={0.9}
         >
@@ -76,7 +76,7 @@ export function DailyReadingScreen({ navigation }: Props) {
             borderRadius: 18,
             padding: 16,
             borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.06)",
+            borderColor: "rgba(83,104,149,0.14)",
           }}
         >
           <AppText style={{ fontSize: 22, fontWeight: "900", lineHeight: 28 }}>
@@ -121,7 +121,7 @@ export function DailyReadingScreen({ navigation }: Props) {
           <View
             style={{
               marginTop: 10,
-              backgroundColor: "rgba(0,0,0,0.04)",
+              backgroundColor: "rgba(174,197,235,0.16)",
               padding: 12,
               borderRadius: 14,
             }}
@@ -180,7 +180,7 @@ export function DailyReadingScreen({ navigation }: Props) {
                     width: 22,
                     height: 22,
                     borderRadius: 11,
-                    backgroundColor: "rgba(45,147,108,0.14)",
+                    backgroundColor: "rgba(5,50,37,0.14)",
                     alignItems: "center",
                     justifyContent: "center",
                     marginTop: 1,

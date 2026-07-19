@@ -49,7 +49,7 @@ export function ConfirmModal({
                 width: 52,
                 height: 52,
                 borderRadius: 26,
-                backgroundColor: "rgba(45,147,108,0.12)",
+                backgroundColor: "rgba(5,50,37,0.12)",
                 alignItems: "center",
                 justifyContent: "center",
                 marginBottom: 14,
@@ -83,7 +83,7 @@ export function ConfirmModal({
                 borderRadius: 14,
                 backgroundColor: "#fff",
                 borderWidth: 1,
-                borderColor: "rgba(0,0,0,0.10)",
+                borderColor: "rgba(83,104,149,0.20)",
                 alignItems: "center",
                 justifyContent: "center",
               }}

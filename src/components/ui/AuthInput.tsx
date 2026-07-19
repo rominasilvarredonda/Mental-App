@@ -1,4 +1,4 @@
-import { Text, TextInput, View } from "react-native";
+import { TextInput, View } from "react-native";
 import { tokens } from "../../theme/tokens";
 import { AppText } from "./AppText";
 
@@ -23,9 +23,7 @@ export function AuthInput({
 }: Props) {
   return (
     <View style={{ marginTop: 14 }}>
-      <Text style={{ color: tokens.colors.primary, marginBottom: 8, fontWeight: "600" }}>
-  {label}
-</Text>
+      <AppText variant="label" style={{ color: tokens.colors.heading, marginBottom: 8 }}>{label}</AppText>
 
 
       <TextInput
@@ -37,13 +35,15 @@ export function AuthInput({
         secureTextEntry={secureTextEntry}
         autoCapitalize={autoCapitalize}
         style={{
-          height: 52,
-          borderRadius: 12,
-          paddingHorizontal: 14,
-          borderWidth: 1.2,
-          borderColor: tokens.colors.border ?? "rgba(0,0,0,0.12)",
-          backgroundColor: "#FFFFFF",
+          height: 54,
+          borderRadius: tokens.radius.md,
+          paddingHorizontal: 16,
+          borderWidth: 1,
+          borderColor: tokens.colors.borderStrong,
+          backgroundColor: tokens.colors.surface,
           color: tokens.colors.text,
+          fontFamily: "OpenSans_400Regular",
+          fontSize: 15,
         }}
       />
     </View>

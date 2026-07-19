@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import {
   Image,
+  LayoutAnimation,
   ScrollView,
   TextInput,
   TouchableOpacity,
@@ -164,9 +165,9 @@ export function HomeScreen() {
     >
       <ScrollView
         contentContainerStyle={{
-          padding: 20,
-          paddingTop: 16,
-          paddingBottom: 32,
+          paddingHorizontal: tokens.spacing.xl,
+          paddingTop: tokens.spacing.lg,
+          paddingBottom: tokens.spacing.xxxl,
         }}
         showsVerticalScrollIndicator={false}
       >
@@ -176,7 +177,7 @@ export function HomeScreen() {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-between",
-            marginBottom: 14,
+            marginBottom: tokens.spacing.xl,
           }}
         >
           <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
@@ -185,14 +186,16 @@ export function HomeScreen() {
                 width: 42,
                 height: 42,
                 borderRadius: 21,
-                backgroundColor: "rgba(0,0,0,0.08)",
+                backgroundColor: tokens.colors.skySoft,
+                borderWidth: 1,
+                borderColor: tokens.colors.border,
               }}
             />
             <View>
               <AppText style={{ color: tokens.colors.mutedText, fontSize: 12 }}>
                 Buenas,
               </AppText>
-              <AppText style={{ fontSize: 16, fontWeight: "700" }}>
+              <AppText variant="subtitle" style={{ color: tokens.colors.heading }}>
                 Jose Pedro
               </AppText>
             </View>
@@ -206,7 +209,10 @@ export function HomeScreen() {
               borderRadius: 20,
               alignItems: "center",
               justifyContent: "center",
-              backgroundColor: "rgba(0,0,0,0.04)",
+              backgroundColor: tokens.colors.surface,
+              borderWidth: 1,
+              borderColor: tokens.colors.border,
+              ...tokens.shadow.soft,
             }}
           >
             <Feather name="bell" size={18} color={tokens.colors.text} />
@@ -214,56 +220,59 @@ export function HomeScreen() {
         </View>
 
         {/* Mood card */}
-        <View
+        <LinearGradient
+          colors={tokens.gradients.calm}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
           style={{
-            backgroundColor: "#EAF2F0",
-            borderRadius: 18,
-            padding: 16,
+            borderRadius: tokens.radius.xl,
+            padding: tokens.spacing.xl,
             borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.06)",
-            shadowColor: "#000",
-            shadowOpacity: 0.06,
-            shadowRadius: 10,
-            shadowOffset: { width: 0, height: 6 },
+            borderColor: "rgba(5,50,37,0.09)",
+            ...tokens.shadow.card,
           }}
         >
           {!moodSaved ? (
             <>
-              <AppText style={{ fontSize: 18, fontWeight: "800" }}>
+              <AppText variant="title" style={{ color: tokens.colors.heading }}>
                 ¿Cómo te sentís hoy?
               </AppText>
-              <AppText style={{ color: tokens.colors.mutedText, marginTop: 4 }}>
-                Selecciona tu estado de ánimo
+              <AppText style={{ color: tokens.colors.mutedText, marginTop: 6 }}>
+                Regalate un momento para registrar cómo estás.
               </AppText>
 
-              <View style={{ flexDirection: "row", gap: 10, marginTop: 14 }}>
+              <View style={{ flexDirection: "row", gap: 8, marginTop: 20 }}>
                 {MOODS.map((m) => {
                   const active = selectedMood === m.id;
                   return (
                     <TouchableOpacity
                       key={m.id}
-                      onPress={() => setSelectedMood(m.id)}
+                      onPress={() => {
+                        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+                        setSelectedMood(m.id);
+                      }}
                       style={{
                         flex: 1,
-                        height: 44,
-                        borderRadius: 12,
+                        height: 52,
+                        borderRadius: tokens.radius.md,
                         alignItems: "center",
                         justifyContent: "center",
                         backgroundColor: active
-                          ? "rgba(45,147,108,0.18)"
-                          : "#FFFFFF",
+                          ? tokens.colors.primary
+                          : "rgba(255,255,255,0.70)",
                         borderWidth: 1,
                         borderColor: active
                           ? tokens.colors.primary
-                          : "rgba(0,0,0,0.08)",
+                          : tokens.colors.border,
+                        ...tokens.shadow.soft,
                       }}
                     >
                       <MaterialCommunityIcons
                         name={m.icon}
-                        size={24}
+                        size={25}
                         color={
                           active
-                            ? tokens.colors.primary
+                            ? tokens.colors.white
                             : tokens.colors.mutedText
                         }
                       />
@@ -272,19 +281,19 @@ export function HomeScreen() {
                 })}
               </View>
 
-              <AppText style={{ marginTop: 14, fontWeight: "700" }}>
-                Agrega una nota (opcional)
+              <AppText variant="label" style={{ marginTop: 20, color: tokens.colors.heading }}>
+                UNA NOTA PARA VOS (OPCIONAL)
               </AppText>
 
               <View
                 style={{
                   marginTop: 10,
-                  borderRadius: 12,
+                  borderRadius: tokens.radius.md,
                   borderWidth: 1,
-                  borderColor: "rgba(0,0,0,0.10)",
-                  backgroundColor: "#fff",
-                  paddingHorizontal: 12,
-                  paddingVertical: 10,
+                  borderColor: tokens.colors.border,
+                  backgroundColor: "rgba(255,255,255,0.76)",
+                  paddingHorizontal: 16,
+                  paddingVertical: 12,
                 }}
               >
                 <TextInput
@@ -293,8 +302,10 @@ export function HomeScreen() {
                   placeholder="¿Qué pasa por tu mente hoy?"
                   placeholderTextColor={tokens.colors.mutedText}
                   style={{
-                    minHeight: 56,
+                    minHeight: 54,
                     color: tokens.colors.text,
+                    fontFamily: "OpenSans_400Regular",
+                    fontSize: 15,
                   }}
                   multiline
                 />
@@ -305,6 +316,7 @@ export function HomeScreen() {
                   label="Guardar estado de ánimo"
                   onPress={() => {
                     console.log("save mood", { selectedMood, note });
+                    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
                     setMoodSaved(true);
                   }}
                   disabled={!canSave}
@@ -372,7 +384,7 @@ export function HomeScreen() {
                     flex: 1,
                     height: 8,
                     borderRadius: 999,
-                    backgroundColor: "rgba(0,0,0,0.06)",
+                    backgroundColor: "rgba(83,104,149,0.14)",
                     overflow: "hidden",
                   }}
                 >
@@ -399,7 +411,10 @@ export function HomeScreen() {
 
               {/* (Opcional) botón para volver a editar */}
               <TouchableOpacity
-                onPress={() => setMoodSaved(false)}
+                onPress={() => {
+                  LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+                  setMoodSaved(false);
+                }}
                 style={{ marginTop: 14, alignSelf: "flex-start" }}
               >
                 <AppText
@@ -410,18 +425,19 @@ export function HomeScreen() {
               </TouchableOpacity>
             </>
           )}
-        </View>
+        </LinearGradient>
 
         {/* Próxima sesión */}
         {nextSession && (
           <LinearGradient
-            colors={[tokens.colors.primary, tokens.colors.secondary]}
+            colors={tokens.gradients.primary}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
-              marginTop: 16,
-              borderRadius: 18,
-              padding: 16,
+              marginTop: tokens.spacing.xl,
+              borderRadius: tokens.radius.xl,
+              padding: tokens.spacing.xl,
+              ...tokens.shadow.card,
             }}
           >
             <AppText style={{ color: "rgba(255,255,255,0.8)", fontSize: 12 }}>
@@ -545,11 +561,11 @@ export function HomeScreen() {
         )}
 
         {/* Accesos rápidos */}
-        <View style={{ marginTop: 16, flexDirection: "row", gap: 12 }}>
+        <View style={{ marginTop: tokens.spacing.xl, flexDirection: "row", gap: 12 }}>
           {[
-            { label: "Nueva sesión", icon: "calendar" as const },
-            { label: "AI de apoyo", icon: "message-circle" as const },
-            { label: "Seminarios", icon: "users" as const },
+            { label: "Nueva sesión", icon: "calendar" as const, tone: tokens.colors.sageSoft, color: tokens.colors.primary },
+            { label: "AI de apoyo", icon: "message-circle" as const, tone: tokens.colors.skySoft, color: tokens.colors.secondary },
+            { label: "Seminarios", icon: "users" as const, tone: tokens.colors.secondarySoft, color: tokens.colors.secondary },
           ].map((item) => (
             <TouchableOpacity
               key={item.label}
@@ -565,16 +581,14 @@ export function HomeScreen() {
               }}
               style={{
                 flex: 1,
-                backgroundColor: "#fff",
-                borderRadius: 16,
-                paddingVertical: 14,
+                backgroundColor: tokens.colors.surface,
+                borderRadius: tokens.radius.lg,
+                paddingVertical: 18,
+                paddingHorizontal: 8,
                 alignItems: "center",
                 borderWidth: 1,
-                borderColor: "rgba(0,0,0,0.06)",
-                shadowColor: "#000",
-                shadowOpacity: 0.05,
-                shadowRadius: 8,
-                shadowOffset: { width: 0, height: 4 },
+                borderColor: tokens.colors.border,
+                ...tokens.shadow.soft,
               }}
             >
               <View
@@ -582,7 +596,7 @@ export function HomeScreen() {
                   width: 34,
                   height: 34,
                   borderRadius: 10,
-                  backgroundColor: "rgba(45,147,108,0.12)",
+                  backgroundColor: item.tone,
                   alignItems: "center",
                   justifyContent: "center",
                   marginBottom: 10,
@@ -591,10 +605,10 @@ export function HomeScreen() {
                 <Feather
                   name={item.icon}
                   size={16}
-                  color={tokens.colors.primary}
+                  color={item.color}
                 />
               </View>
-              <AppText style={{ fontWeight: "700" }}>{item.label}</AppText>
+              <AppText variant="caption" style={{ fontFamily: "OpenSans_600SemiBold", textAlign: "center", color: tokens.colors.heading }}>{item.label}</AppText>
             </TouchableOpacity>
           ))}
         </View>
@@ -609,7 +623,7 @@ export function HomeScreen() {
               marginBottom: 10,
             }}
           >
-            <AppText style={{ fontSize: 16, fontFamily: "OpenSans_700Bold" }}>
+            <AppText variant="section" style={{ color: tokens.colors.heading }}>
               Ejercicios sugeridos
             </AppText>
             <TouchableOpacity
@@ -645,12 +659,13 @@ export function HomeScreen() {
             <View
               key={it.title}
               style={{
-                backgroundColor: "#fff",
-                borderRadius: 14,
-                padding: 14,
+                backgroundColor: tokens.colors.surface,
+                borderRadius: tokens.radius.lg,
+                padding: 16,
                 borderWidth: 1,
-                borderColor: "rgba(0,0,0,0.06)",
-                marginBottom: 10,
+                borderColor: tokens.colors.border,
+                marginBottom: 12,
+                ...tokens.shadow.soft,
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -664,7 +679,7 @@ export function HomeScreen() {
                     width: 42,
                     height: 42,
                     borderRadius: 14,
-                    backgroundColor: "rgba(45,147,108,0.12)",
+                    backgroundColor: tokens.colors.sageSoft,
                     alignItems: "center",
                     justifyContent: "center",
                   }}
@@ -694,7 +709,7 @@ export function HomeScreen() {
                   width: 34,
                   height: 34,
                   borderRadius: 10,
-                  backgroundColor: "rgba(45,147,108,0.12)",
+                  backgroundColor: tokens.colors.primarySoft,
                   alignItems: "center",
                   justifyContent: "center",
                 }}
@@ -709,8 +724,8 @@ export function HomeScreen() {
         <View style={{ marginTop: 8 }}>
           <AppText
             style={{
-              fontSize: 16,
-              fontFamily: "OpenSans_700Bold",
+              ...tokens.typography.section,
+              color: tokens.colors.heading,
               marginBottom: 10,
             }}
           >
@@ -718,12 +733,13 @@ export function HomeScreen() {
           </AppText>
 
           <LinearGradient
-            colors={[tokens.colors.primary, tokens.colors.secondary]}
+            colors={tokens.gradients.blue}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
-              borderRadius: 18,
-              padding: 16,
+              borderRadius: tokens.radius.xl,
+              padding: tokens.spacing.xl,
+              ...tokens.shadow.card,
             }}
           >
             <View
@@ -786,8 +802,8 @@ export function HomeScreen() {
             borderRadius: 22,
             padding: 16,
             borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.06)",
-            shadowColor: "#000",
+            borderColor: "rgba(83,104,149,0.14)",
+            shadowColor: tokens.colors.primary,
             shadowOpacity: 0.08,
             shadowRadius: 12,
             shadowOffset: { width: 0, height: 8 },
@@ -804,7 +820,7 @@ export function HomeScreen() {
                 backgroundColor: tokens.colors.secondary,
                 alignItems: "center",
                 justifyContent: "center",
-                shadowColor: "#000",
+                shadowColor: tokens.colors.primary,
                 shadowOpacity: 0.18,
                 shadowRadius: 10,
                 shadowOffset: { width: 0, height: 6 },
@@ -877,7 +893,7 @@ export function HomeScreen() {
           <View
             style={{
               marginTop: 16,
-              backgroundColor: "rgba(0,0,0,0.05)",
+              backgroundColor: "rgba(83,104,149,0.08)",
               borderRadius: 16,
               paddingVertical: 14,
               paddingHorizontal: 14,
@@ -953,7 +969,7 @@ export function HomeScreen() {
                   width: 26,
                   height: 26,
                   borderRadius: 13,
-                  backgroundColor: "rgba(45,147,108,0.35)",
+                  backgroundColor: "rgba(5,50,37,0.35)",
                   borderWidth: 2,
                   borderColor: "#fff",
                 }}
@@ -1045,7 +1061,7 @@ export function HomeScreen() {
               backgroundColor: tokens.colors.secondary,
               alignItems: "center",
               justifyContent: "center",
-              shadowColor: "#000",
+              shadowColor: tokens.colors.primary,
               shadowOpacity: 0.18,
               shadowRadius: 10,
               shadowOffset: { width: 0, height: 8 },
